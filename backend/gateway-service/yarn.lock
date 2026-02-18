@@ -1259,10 +1259,10 @@
     rxjs "^7.8.2"
     ts-proto "^2.6.1"
 
-"@stackcine/core@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@stackcine/core/-/core-1.0.6.tgz#0650b0567f1214fe6be524ac32bb030b177d4cfa"
-  integrity sha512-kvQzda8+7UjxldDsLmZk4ZeSZVglVn5jhDgbu73LmD6pxipl7BPbYWtoDp7pYIRoog15V61ZqvII7m6MkufOhA==
+"@stackcine/core@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@stackcine/core/-/core-1.0.7.tgz#ee880832be370f7540747f4904102c91d4d7a970"
+  integrity sha512-jqPvo3d6iy0SzdiRdPwsU0i6DynADcHv/DaRW1Te3GELttHW7C2j92geTX7Wvt0TPfiW++zKzJQarlanh8ainw==
   dependencies:
     "@trivago/prettier-plugin-sort-imports" "^5.2.2"
 

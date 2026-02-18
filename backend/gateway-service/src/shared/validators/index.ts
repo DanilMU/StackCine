@@ -1,1 +1,1 @@
-export * from './identifier.validator'
+export * from './identifier.validator';
