@@ -1342,12 +1342,13 @@
   dependencies:
     "@sinonjs/commons" "^3.0.1"
 
-"@stackcine/contracts@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@stackcine/contracts/-/contracts-1.0.0.tgz#1cc23e744024ceaedc0ec7ce671a8688c1c9ec08"
-  integrity sha512-Dl447WHjher+YxGI3r4a82tUuX5TRl7fIsFV+NYb6CT9tIUK8WVIrx/fd+bcm+9hu41bnV8EDqITVyI2MGF6TQ==
+"@stackcine/contracts@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@stackcine/contracts/-/contracts-1.0.2.tgz#b7de36b92676a6acf9d5dcafc156977531392154"
+  integrity sha512-mkxhvYl8HvJiKsz4GiRtos5PVPcWuAfv/R3wcDhPhZfkVyiSLDe7tjIyghELC0aHiEHGUfk+5YQmQp8uELVYoA==
   dependencies:
     "@nestjs/microservices" "^11.1.13"
+    "@stackcine/core" "^1.0.7"
     rxjs "^7.8.2"
     ts-proto "^2.6.1"
 
