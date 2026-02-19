@@ -1342,6 +1342,11 @@
   dependencies:
     "@sinonjs/commons" "^3.0.1"
 
+"@stackcine/common@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@stackcine/common/-/common-1.0.0.tgz#b85e41317b903aeadfb02c91e0feee934a3a77f8"
+  integrity sha512-yAU8fkeitWzfmc5Vt/OkcLyIThPeXVu9zARFd4aM8190+a3BpTFmDfrd0GMYy5WwWlNbrFrGUuK7f3wsUlbR+g==
+
 "@stackcine/contracts@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@stackcine/contracts/-/contracts-1.0.2.tgz#b7de36b92676a6acf9d5dcafc156977531392154"

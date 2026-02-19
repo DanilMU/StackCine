@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { RpcException } from '@nestjs/microservices';
 import { Account } from '@prisma/generated/client';
+import { RpcStatus } from '@stackcine/common';
 import type {
 	SendOtpRequest,
 	VerifyOtpRequest,
@@ -58,7 +59,11 @@ export class AuthService {
 			account = await this.authRepository.findByPhone(identifier);
 		else account = await this.authRepository.findByEmail(identifier);
 
-		if (!account) throw new RpcException('Account not found');
+		if (!account)
+			throw new RpcException({
+				code: RpcStatus.NOT_FOUND,
+				message: 'Account not found',
+			});
 
 		if (type === 'phone' && !account.isPhoneVerified)
 			await this.authRepository.update(account.id, {
