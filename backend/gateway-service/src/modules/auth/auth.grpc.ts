@@ -1,6 +1,5 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import type { ClientGrpc } from '@nestjs/microservices';
-import { RpcException } from '@nestjs/microservices';
 import type {
 	SendOtpRequest,
 	VerifyOtpRequest,
@@ -28,7 +27,7 @@ export class AuthClientGrpc implements OnModuleInit {
 		const result = await lastValueFrom(
 			this.authService.verifyOtp(request).pipe(
 				catchError((error) => {
-					throw new RpcException(error);
+					throw error;
 				}),
 			),
 		);
