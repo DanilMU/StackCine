@@ -24,8 +24,8 @@ export class AuthController {
 	): Promise<VerifyOtpResponse> {
 		const result = await this.authService.verifyOtp(data);
 		return {
-			accessToken: result.access_token,
-			refreshToken: result.refresh_token,
+			accessToken: result.accessToken,
+			refreshToken: result.refreshToken,
 		};
 	}
 }

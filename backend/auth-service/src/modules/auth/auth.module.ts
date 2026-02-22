@@ -1,5 +1,8 @@
 import { Module } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { PassportModule } from '@stackcine/passport';
+
+import { getPassportConfig } from '@/config';
 
 import { OtpService } from '../otp/otp.service';
 
@@ -9,8 +12,9 @@ import { AuthService } from './auth.service';
 
 @Module({
 	imports: [
-		PassportModule.register({
-			secretKey: '123456',
+		PassportModule.registerAsync({
+			usefactory: getPassportConfig,
+			inject: [ConfigService],
 		}),
 	],
 	controllers: [AuthController],
