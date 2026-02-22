@@ -6,6 +6,7 @@ import type {
 	SendOtpRequest,
 	VerifyOtpRequest,
 } from '@stackcine/contracts/gen/auth';
+import { PassportService } from '@stackcine/passport';
 
 import { OtpService } from '../otp/otp.service';
 
@@ -16,6 +17,7 @@ export class AuthService {
 	public constructor(
 		private readonly authRepository: AuthRepository,
 		private readonly otpService: OtpService,
+		private readonly passportService: PassportService,
 	) {}
 
 	public async sendOtp(data: SendOtpRequest) {
@@ -75,6 +77,16 @@ export class AuthService {
 				isEmailVerified: true,
 			});
 
-		return { access_token: '123456', refresh_token: '123456' };
+		console.log(
+			'VERIFY RESULT: ',
+			this.passportService.verify(
+				'am8yZ0lpX0tKaXpDRllaZDBCZG16.MTc3MTc3MTg3Nw.MTc3MTc3Mjc3Nw.0b9b83410b363bc77d8f10c5cb735ce7f25acc66a4a74abfe43ea128e4f346d8',
+			),
+		);
+
+		return {
+			access_token: this.passportService.generate(account.id, 900),
+			refresh_token: '123456',
+		};
 	}
 }

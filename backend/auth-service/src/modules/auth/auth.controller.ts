@@ -4,6 +4,7 @@ import type {
 	SendOtpRequest,
 	SendOtpResponse,
 	VerifyOtpRequest,
+	VerifyOtpResponse,
 } from '@stackcine/contracts/gen/auth';
 
 import { AuthService } from './auth.service';
@@ -20,7 +21,11 @@ export class AuthController {
 	@GrpcMethod('AuthService', 'VerifyOtp')
 	public async verifyOtp(
 		data: VerifyOtpRequest,
-	): Promise<{ access_token: string; refresh_token: string }> {
-		return await this.authService.verifyOtp(data);
+	): Promise<VerifyOtpResponse> {
+		const result = await this.authService.verifyOtp(data);
+		return {
+			accessToken: result.access_token,
+			refreshToken: result.refresh_token,
+		};
 	}
 }
