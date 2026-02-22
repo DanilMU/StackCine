@@ -1,6 +1,8 @@
 import { Controller } from '@nestjs/common';
 import { GrpcMethod } from '@nestjs/microservices';
 import type {
+	RefreshRequest,
+	RefreshResponse,
 	SendOtpRequest,
 	SendOtpResponse,
 	VerifyOtpRequest,
@@ -27,5 +29,10 @@ export class AuthController {
 			accessToken: result.accessToken,
 			refreshToken: result.refreshToken,
 		};
+	}
+
+	@GrpcMethod('AuthService', 'Refresh')
+	public async refresh(data: RefreshRequest): Promise<RefreshResponse> {
+		return await this.authService.refresh(data);
 	}
 }

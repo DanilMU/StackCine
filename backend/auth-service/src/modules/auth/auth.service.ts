@@ -4,6 +4,7 @@ import { RpcException } from '@nestjs/microservices';
 import { Account } from '@prisma/generated/client';
 import { RpcStatus } from '@stackcine/common';
 import type {
+	RefreshRequest,
 	SendOtpRequest,
 	VerifyOtpRequest,
 } from '@stackcine/contracts/gen/auth';
@@ -99,6 +100,21 @@ export class AuthService {
 			});
 
 		return this.generateTokens(account.id);
+	}
+
+	public async refresh(data: RefreshRequest) {
+		const { refreshToken } = data;
+
+		const result = this.passportService.verify(refreshToken);
+
+		if (!result.valid) {
+			throw new RpcException({
+				code: RpcStatus.UNAUTHENTICATED,
+				details: result.reason,
+			});
+		}
+
+		return this.generateTokens(result.userId);
 	}
 
 	private generateTokens(userId: string) {
