@@ -1,6 +1,7 @@
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { type MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { PROTO_PATHS } from '@stackcine/contracts';
 
 import { AppModule } from './app.module';
 import type { AllConfigs } from './config';
@@ -19,8 +20,7 @@ async function bootstrap() {
 		transport: Transport.GRPC,
 		options: {
 			package: 'auth.v1',
-			protoPath:
-				'node_modules/@stackcine/contracts/proto/auth.proto',
+			protoPath: PROTO_PATHS.AUTH,
 			url,
 			loader: {
 				keepCase: true,
