@@ -3,13 +3,19 @@ import type { ClientGrpc } from '@nestjs/microservices';
 import type {
 	SendOtpRequest,
 	VerifyOtpRequest,
+	VerifyOtpResponse,
 } from '@stackcine/contracts/gen/auth';
-import { lastValueFrom } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+
+interface AuthServiceClient {
+	sendOtp(request: SendOtpRequest): Observable<any>;
+	verifyOtp(request: VerifyOtpRequest): Observable<VerifyOtpResponse>;
+}
 
 @Injectable()
 export class AuthClientGrpc implements OnModuleInit {
-	private authService!: any;
+	private authService!: AuthServiceClient;
 
 	public constructor(
 		@Inject('AUTH_PACKAGE') private readonly client: ClientGrpc,
@@ -23,14 +29,13 @@ export class AuthClientGrpc implements OnModuleInit {
 		return this.authService.sendOtp(request);
 	}
 
-	public async verifyOtp(request: VerifyOtpRequest) {
-		const result = await lastValueFrom(
-			this.authService.verifyOtp(request).pipe(
-				catchError((error) => {
-					throw error;
-				}),
-			),
+	public verifyOtp(
+		request: VerifyOtpRequest,
+	): Observable<VerifyOtpResponse> {
+		return this.authService.verifyOtp(request).pipe(
+			catchError((error) => {
+				throw error;
+			}),
 		);
-		return result;
 	}
 }

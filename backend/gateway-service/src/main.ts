@@ -1,6 +1,7 @@
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
+import * as cookieParser from 'cookie-parser';
 
 import { AppModule } from './core/app.module';
 import {
@@ -15,6 +16,8 @@ async function bootstrap() {
 
 	const config = app.get(ConfigService);
 	const logger = new Logger();
+
+	app.use(cookieParser(config.getOrThrow<string>('COOKIES_SECRET')));
 
 	app.useGlobalPipes(new ValidationPipe(getValidationPipeConfig()));
 
