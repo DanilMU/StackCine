@@ -89,6 +89,9 @@ export class AuthService {
 				message: 'Account not found',
 			});
 
+		console.log('AuthService: Found account:', account);
+		console.log('AuthService: Account ID:', account.id);
+
 		if (type === 'phone' && !account.isPhoneVerified)
 			await this.authRepository.update(account.id, {
 				isPhoneVerified: true,
@@ -98,6 +101,8 @@ export class AuthService {
 			await this.authRepository.update(account.id, {
 				isEmailVerified: true,
 			});
+
+		console.log('AuthService: Generating tokens for account ID:', account.id);
 
 		return this.generateTokens(account.id);
 	}

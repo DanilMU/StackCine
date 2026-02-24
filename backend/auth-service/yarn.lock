@@ -1365,15 +1365,15 @@
   dependencies:
     "@sinonjs/commons" "^3.0.1"
 
-"@stackcine/common@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@stackcine/common/-/common-1.0.0.tgz#b85e41317b903aeadfb02c91e0feee934a3a77f8"
-  integrity sha512-yAU8fkeitWzfmc5Vt/OkcLyIThPeXVu9zARFd4aM8190+a3BpTFmDfrd0GMYy5WwWlNbrFrGUuK7f3wsUlbR+g==
+"@stackcine/common@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@stackcine/common/-/common-1.0.1.tgz#5b8ebb81b4c4b68721d646fbe07c7f3bfa85173a"
+  integrity sha512-XNzvz2+kCZzPKBTn7vnpF7Z/vRXqrdgloX3W+PF6uTj0lZWgaEPoRsNr2XI3xPAevJ2i78DGGX97VSGe+d7LRA==
 
-"@stackcine/contracts@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@stackcine/contracts/-/contracts-1.0.6.tgz#209aba0bddadab0d301d528e2ecea08cec2a2d64"
-  integrity sha512-mY60glJQt788+xf8TWjz7UVjyBAdStawcqRLZ2gSges4kR/d/4NYy4iYFlTfstj1PInsOKPid6UAFxErP2F2DQ==
+"@stackcine/contracts@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@stackcine/contracts/-/contracts-1.0.8.tgz#a19d917713d93cf915ad6d11a41a66fe461467f3"
+  integrity sha512-Fcyj9d+xsNXzSE9ti66kO2x9pzRg12Y5UzCm49E8kEhL+z2yhvglRFwAknCMN0Cfm4pCwspolem8igy/qxiSMw==
   dependencies:
     "@nestjs/microservices" "^11.1.13"
     "@stackcine/core" "^1.0.7"
