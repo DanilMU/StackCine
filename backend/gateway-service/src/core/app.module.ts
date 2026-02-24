@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PassportModule } from '@stackcine/passport';
+import { AccountModule } from 'src/modules/account/account.module';
 import { AuthModule } from 'src/modules/auth/auth.module';
 
 import { AppController } from './app.controller';
@@ -18,6 +19,7 @@ import { getPassportConfig } from './config';
 			inject: [ConfigService],
 		}),
 		AuthModule,
+		AccountModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],

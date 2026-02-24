@@ -4,5 +4,13 @@ export const CurrentUser = (): ParameterDecorator =>
 	createParamDecorator((_: unknown, ctx: ExecutionContext) => {
 		const request = ctx.switchToHttp().getRequest();
 
-		return request.user.id ?? null;
+		console.log('CurrentUser decorator: request.user =', request.user);
+
+		if (!request.user) return null;
+
+		const userId = request.user.id ?? null;
+
+		console.log('CurrentUser decorator: returning userId =', userId);
+
+		return userId;
 	});

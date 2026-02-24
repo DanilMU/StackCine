@@ -1,7 +1,6 @@
 import {
 	Body,
 	Controller,
-	Get,
 	HttpCode,
 	HttpStatus,
 	Post,
@@ -9,10 +8,9 @@ import {
 	Res,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
+import { ApiOperation } from '@nestjs/swagger';
 import type { Request, Response } from 'express';
 import { lastValueFrom } from 'rxjs';
-import { CurrentUser, Protected } from 'src/shared/decorators';
 
 import { AuthClientGrpc } from './auth.grpc';
 import { SendOtpRequest, VerifyOtpRequest } from './dto';
@@ -20,7 +18,7 @@ import { SendOtpRequest, VerifyOtpRequest } from './dto';
 @Controller('auth')
 export class AuthController {
 	public constructor(
-		private readonly client: AuthClientGrpc,
+		private readonly authClient: AuthClientGrpc,
 		private readonly configService: ConfigService,
 	) {}
 
@@ -31,7 +29,7 @@ export class AuthController {
 	@Post('otp/send')
 	@HttpCode(HttpStatus.OK)
 	public sendOtp(@Body() dto: SendOtpRequest) {
-		return this.client.sendOtp(dto);
+		return this.authClient.sendOtp(dto);
 	}
 
 	@ApiOperation({
@@ -46,7 +44,7 @@ export class AuthController {
 		@Res({ passthrough: true }) res: Response,
 	) {
 		const { accessToken, refreshToken } = await lastValueFrom(
-			this.client.verifyOtp(dto),
+			this.authClient.verifyOtp(dto),
 		);
 
 		res.cookie('refreshToken', refreshToken, {
@@ -75,7 +73,9 @@ export class AuthController {
 		const refreshToken = req.cookies?.refreshToken;
 
 		const { accessToken, refreshToken: newRefreshToken } =
-			await lastValueFrom(this.client.refresh({ refreshToken }));
+			await lastValueFrom(
+				this.authClient.refresh({ refreshToken }),
+			);
 
 		res.cookie('refreshToken', newRefreshToken, {
 			httpOnly: true,
@@ -109,12 +109,5 @@ export class AuthController {
 		});
 
 		return { ok: true };
-	}
-
-	@ApiBearerAuth()
-	@Protected()
-	@Get('account')
-	public async getAccount(@CurrentUser() userId: string) {
-		return { id: userId };
 	}
 }

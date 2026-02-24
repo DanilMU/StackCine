@@ -1,5 +1,12 @@
 import { applyDecorators, UseGuards } from '@nestjs/common';
+import type { Role } from '@stackcine/contracts/gen/account';
 
-import { AuthGuard } from '../guards';
+import { AuthGuard, RolesGuard } from '../guards';
 
-export const Protected = () => applyDecorators(UseGuards(AuthGuard));
+import { Roles } from './roles.decorator';
+
+export const Protected = (...roles: Role[]) => {
+	if (roles.length === 0) return applyDecorators(UseGuards(AuthGuard));
+
+	return applyDecorators(Roles(...roles), UseGuards(AuthGuard, RolesGuard));
+};

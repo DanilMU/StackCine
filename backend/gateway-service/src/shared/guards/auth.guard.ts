@@ -19,11 +19,15 @@ export class AuthGuard implements CanActivate {
 
 		const result = this.passportService.verify(token);
 
+		console.log('AuthGuard: Token verification result:', result);
+
 		if (!result.valid) throw new UnauthorizedException(result.reason);
 
 		request.user = {
 			id: result.userId,
 		};
+
+		console.log('AuthGuard: Set request.user to:', request.user);
 
 		return true;
 	}
@@ -42,6 +46,8 @@ export class AuthGuard implements CanActivate {
 			);
 
 		const token = header.replace(/^Bearer\s+/i, '').trim();
+
+		console.log('AuthGuard: Extracted token:', token);
 
 		return token;
 	}
