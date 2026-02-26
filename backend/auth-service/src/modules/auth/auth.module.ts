@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { PassportModule } from '@stackcine/passport';
 
 import { getPassportConfig } from '@/config';
+import { UserRepository } from '@/shared/repositories';
 
 import { OtpService } from '../otp/otp.service';
 
@@ -18,6 +19,6 @@ import { AuthService } from './auth.service';
 		}),
 	],
 	controllers: [AuthController],
-	providers: [AuthService, AuthRepository, OtpService],
+	providers: [AuthService, AuthRepository, UserRepository, OtpService],
 })
 export class AuthModule {}

@@ -2,7 +2,11 @@ import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import type { ClientGrpc } from '@nestjs/microservices';
 import type {
 	AccountServiceClient,
+	ConfirmEmailChangeRequest,
+	ConfirmPhoneChangeRequest,
 	GetAccountRequest,
+	InitEmailChangeRequest,
+	InitPhoneChangeRequest,
 } from '@stackcine/contracts/gen/account';
 
 @Injectable()
@@ -22,5 +26,21 @@ export class AccountClientGrpc implements OnModuleInit {
 
 	public getAccount(request: GetAccountRequest) {
 		return this.accountService.getAccount(request);
+	}
+
+	public initEmailChange(request: InitEmailChangeRequest) {
+		return this.accountService.initEmailChange(request);
+	}
+
+	public confirmEmailChange(request: ConfirmEmailChangeRequest) {
+		return this.accountService.confirmEmailChange(request);
+	}
+
+	public initPhoneChange(request: InitPhoneChangeRequest) {
+		return this.accountService.initPhoneChange(request);
+	}
+
+	public confirmPhoneChange(request: ConfirmPhoneChangeRequest) {
+		return this.accountService.confirmPhoneChange(request);
 	}
 }

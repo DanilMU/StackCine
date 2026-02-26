@@ -2,8 +2,9 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
 	IsEnum,
 	IsNotEmpty,
+	IsNumberString,
 	IsString,
-	Matches,
+	Length,
 	Validate,
 } from 'class-validator';
 import { IdentifierValidator } from 'src/shared/validators';
@@ -22,8 +23,8 @@ export class VerifyOtpRequest {
 		description: 'The OTP code sent to the user',
 	})
 	@IsNotEmpty()
-	@IsString()
-	@Matches(/^\d{6}$/, { message: 'Code must be a 6-digit number' })
+	@IsNumberString()
+	@Length(6, 6)
 	public code!: string;
 
 	@ApiProperty({

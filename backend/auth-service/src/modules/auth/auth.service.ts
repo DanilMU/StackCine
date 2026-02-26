@@ -11,6 +11,7 @@ import type {
 import { PassportService, TokenPayload } from '@stackcine/passport';
 
 import type { AllConfigs } from '@/config';
+import { UserRepository } from '@/shared/repositories';
 
 import { OtpService } from '../otp/otp.service';
 
@@ -24,6 +25,7 @@ export class AuthService {
 	public constructor(
 		private readonly configService: ConfigService<AllConfigs>,
 		private readonly authRepository: AuthRepository,
+		private readonly userRepository: UserRepository,
 		private readonly otpService: OtpService,
 		private readonly passportService: PassportService,
 	) {
@@ -48,8 +50,8 @@ export class AuthService {
 		let account: Account | null;
 
 		if (type === 'phone')
-			account = await this.authRepository.findByPhone(identifier);
-		else account = await this.authRepository.findByEmail(identifier);
+			account = await this.userRepository.findByPhone(identifier);
+		else account = await this.userRepository.findByEmail(identifier);
 
 		if (!account) {
 			account = await this.authRepository.create({
@@ -80,8 +82,8 @@ export class AuthService {
 		let account: Account | null;
 
 		if (type === 'phone')
-			account = await this.authRepository.findByPhone(identifier);
-		else account = await this.authRepository.findByEmail(identifier);
+			account = await this.userRepository.findByPhone(identifier);
+		else account = await this.userRepository.findByEmail(identifier);
 
 		if (!account)
 			throw new RpcException({
@@ -93,16 +95,19 @@ export class AuthService {
 		console.log('AuthService: Account ID:', account.id);
 
 		if (type === 'phone' && !account.isPhoneVerified)
-			await this.authRepository.update(account.id, {
+			await this.userRepository.update(account.id, {
 				isPhoneVerified: true,
 			});
 
 		if (type === 'email' && !account.isEmailVerified)
-			await this.authRepository.update(account.id, {
+			await this.userRepository.update(account.id, {
 				isEmailVerified: true,
 			});
 
-		console.log('AuthService: Generating tokens for account ID:', account.id);
+		console.log(
+			'AuthService: Generating tokens for account ID:',
+			account.id,
+		);
 
 		return this.generateTokens(account.id);
 	}

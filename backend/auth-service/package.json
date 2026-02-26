@@ -31,7 +31,7 @@
     "@prisma/adapter-pg": "^7.4.0",
     "@prisma/client": "^7.4.0",
     "@stackcine/common": "^1.0.1",
-    "@stackcine/contracts": "^1.0.8",
+    "@stackcine/contracts": "^1.0.9",
     "@stackcine/core": "^1.0.7",
     "@stackcine/passport": "^1.0.0",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",

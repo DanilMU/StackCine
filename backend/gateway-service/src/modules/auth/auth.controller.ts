@@ -18,7 +18,7 @@ import { SendOtpRequest, VerifyOtpRequest } from './dto';
 @Controller('auth')
 export class AuthController {
 	public constructor(
-		private readonly authClient: AuthClientGrpc,
+		private readonly client: AuthClientGrpc,
 		private readonly configService: ConfigService,
 	) {}
 
@@ -29,7 +29,7 @@ export class AuthController {
 	@Post('otp/send')
 	@HttpCode(HttpStatus.OK)
 	public sendOtp(@Body() dto: SendOtpRequest) {
-		return this.authClient.sendOtp(dto);
+		return this.client.sendOtp(dto);
 	}
 
 	@ApiOperation({
@@ -44,7 +44,7 @@ export class AuthController {
 		@Res({ passthrough: true }) res: Response,
 	) {
 		const { accessToken, refreshToken } = await lastValueFrom(
-			this.authClient.verifyOtp(dto),
+			this.client.verifyOtp(dto),
 		);
 
 		res.cookie('refreshToken', refreshToken, {
@@ -73,9 +73,7 @@ export class AuthController {
 		const refreshToken = req.cookies?.refreshToken;
 
 		const { accessToken, refreshToken: newRefreshToken } =
-			await lastValueFrom(
-				this.authClient.refresh({ refreshToken }),
-			);
+			await lastValueFrom(this.client.refresh({ refreshToken }));
 
 		res.cookie('refreshToken', newRefreshToken, {
 			httpOnly: true,
