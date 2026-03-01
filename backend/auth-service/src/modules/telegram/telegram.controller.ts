@@ -1,6 +1,10 @@
 import { Controller } from '@nestjs/common';
 import { GrpcMethod } from '@nestjs/microservices';
-import type { TelegramInitResponse } from '@stackcine/contracts/gen/auth';
+import type {
+	TelegramInitResponse,
+	TelegramVerifyRequest,
+	TelegramVerifyResponse,
+} from '@stackcine/contracts/gen/auth';
 
 import { TelegramService } from './telegram.service';
 
@@ -11,5 +15,12 @@ export class TelegramController {
 	@GrpcMethod('AuthService', 'TelegramInit')
 	public async getAuthUrl(): Promise<TelegramInitResponse> {
 		return this.telegramService.getAuthUrl();
+	}
+
+	@GrpcMethod('AuthService', 'TelegramVerify')
+	public async verify(
+		data: TelegramVerifyRequest,
+	): Promise<TelegramVerifyResponse> {
+		return this.telegramService.verify(data);
 	}
 }
