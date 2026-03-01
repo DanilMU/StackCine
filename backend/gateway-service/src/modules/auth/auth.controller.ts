@@ -1,6 +1,7 @@
 import {
 	Body,
 	Controller,
+	Get,
 	HttpCode,
 	HttpStatus,
 	Post,
@@ -107,5 +108,11 @@ export class AuthController {
 		});
 
 		return { ok: true };
+	}
+
+	@Get('telegram')
+	@HttpCode(HttpStatus.OK)
+	public async telegramInit() {
+		return this.client.telegramInit();
 	}
 }
