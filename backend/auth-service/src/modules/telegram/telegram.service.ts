@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { RpcException } from '@nestjs/microservices';
+import { RpcStatus } from '@stackcine/common';
 import type { TelegramVerifyRequest } from '@stackcine/contracts/gen/auth';
-import { randomBytes } from 'crypto';
+import { createHash, createHmac, randomBytes } from 'crypto';
 
 import { AllConfigs } from '@/config';
 import { RedisService } from '@/infrastructure/redis/redis.service';
@@ -55,6 +57,14 @@ export class TelegramService {
 	}
 
 	public async verify(data: TelegramVerifyRequest) {
+		const isValid = this.checkTelegramAuth(data.query);
+
+		if (!isValid)
+			throw new RpcException({
+				code: RpcStatus.UNAUTHENTICATED,
+				details: 'Invalid Telegram siganture',
+			});
+
 		const telegramId = data.query.id;
 
 		const exists =
@@ -75,5 +85,30 @@ export class TelegramService {
 		return {
 			url: `https://t.me/${this.BOT_USERNAME}?start=${sessionId}`,
 		};
+	}
+
+	private checkTelegramAuth(query: Record<string, string>) {
+		const hash = query.hash;
+
+		if (!hash) return false;
+
+		const dataCheckArr = Object.keys(query)
+			.filter((k) => k !== 'hash')
+			.sort()
+			.map((k) => `${k}=${query[k]}`);
+
+		const dataCheckString = dataCheckArr.join('\n');
+
+		const secretKey = createHash('sha256')
+			.update(`${this.BOT_ID}:${this.BOT_TOKEN}`)
+			.digest('hex');
+
+		const hmac = createHmac('sha256', secretKey)
+			.update(dataCheckString)
+			.digest('hex');
+
+		const isValid = hmac === hash;
+
+		return isValid;
 	}
 }
