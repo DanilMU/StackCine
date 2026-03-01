@@ -1279,9 +1279,9 @@
   integrity sha512-yAU8fkeitWzfmc5Vt/OkcLyIThPeXVu9zARFd4aM8190+a3BpTFmDfrd0GMYy5WwWlNbrFrGUuK7f3wsUlbR+g==
 
 "@stackcine/contracts@^1.0.9":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@stackcine/contracts/-/contracts-1.0.10.tgz#7806760db6266fd291335b45c64d8df05a858925"
-  integrity sha512-MiWxKCIX5vMCWHqdDnHoSCIJ0biXuwviTr51C8zwTiUtUXIXMVNO/qrv814jkSrhfU+Yug6vPh4avvDHZe2clQ==
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@stackcine/contracts/-/contracts-1.0.11.tgz#aaf954fdfe1cdbbc4358150b8f26987860734be9"
+  integrity sha512-AGeM+W+FhCe775h9SPCLsLyvAQsjuBhkEs8hgPk2kRJcS6tH1KX3QBCtiHwaiJs18TcHVoaxpDLLFTOAE1Y02Q==
   dependencies:
     "@nestjs/microservices" "^11.1.13"
     "@stackcine/core" "^1.0.7"

@@ -2,11 +2,11 @@ import {
 	TelegramCompleteRequest,
 	TelegramCompleteResponse,
 } from '@stackcine/contracts/gen/auth';
-import { lastValueFrom } from 'rxjs';
 import type { Telegraf } from 'telegraf';
 
 import { authClient } from '@/infrastructure/grpc/auth.client';
 import type { TelegrafContext } from '@/shared/interfaces';
+import { callUnary } from '@/shared/utils';
 
 export function registerContactHandler(bot: Telegraf<TelegrafContext>) {
 	bot.on('contact', async (ctx) => {
@@ -37,16 +37,8 @@ export function registerContactHandler(bot: Telegraf<TelegrafContext>) {
 						},
 					],
 				],
+				remove_keyboard: true,
 			},
-		});
-	});
-}
-
-function callUnary<T>(method, request) {
-	return new Promise<T>((resolve, reject) => {
-		method(request, (err, res) => {
-			if (err) reject(err);
-			else resolve(res);
 		});
 	});
 }

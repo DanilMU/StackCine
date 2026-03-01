@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import type { Account } from '@prisma/generated/client';
-import type { AccountUpdateInput } from '@prisma/generated/models';
+import type {
+	AccountCreateInput,
+	AccountUpdateInput,
+} from '@prisma/generated/models';
 
 import { PrismaService } from '@/infrastructure/prisma/prisma.service';
 
@@ -17,6 +20,12 @@ export class UserRepository {
 	public async findByEmail(email: string): Promise<Account | null> {
 		return await this.prismaService.account.findUnique({
 			where: { email },
+		});
+	}
+
+	public async create(data: AccountCreateInput): Promise<Account> {
+		return await this.prismaService.account.create({
+			data,
 		});
 	}
 

@@ -3,6 +3,8 @@ import { GrpcMethod } from '@nestjs/microservices';
 import type {
 	TelegramCompleteRequest,
 	TelegramCompleteResponse,
+	TelegramConsumeRequest,
+	TelegramConsumeResponse,
 	TelegramInitResponse,
 	TelegramVerifyRequest,
 	TelegramVerifyResponse,
@@ -30,8 +32,13 @@ export class TelegramController {
 	public async complete(
 		data: TelegramCompleteRequest,
 	): Promise<TelegramCompleteResponse> {
-		console.log('DATA: ', data);
+		return this.telegramService.complete(data);
+	}
 
-		return { sessionId: data.sessionId };
+	@GrpcMethod('AuthService', 'TelegramConsume')
+	public async consumeSession(
+		data: TelegramConsumeRequest,
+	): Promise<TelegramConsumeResponse> {
+		return this.telegramService.consumeSession(data);
 	}
 }
