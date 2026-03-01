@@ -1371,9 +1371,9 @@
   integrity sha512-XNzvz2+kCZzPKBTn7vnpF7Z/vRXqrdgloX3W+PF6uTj0lZWgaEPoRsNr2XI3xPAevJ2i78DGGX97VSGe+d7LRA==
 
 "@stackcine/contracts@^1.0.10":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@stackcine/contracts/-/contracts-1.0.10.tgz#7806760db6266fd291335b45c64d8df05a858925"
-  integrity sha512-MiWxKCIX5vMCWHqdDnHoSCIJ0biXuwviTr51C8zwTiUtUXIXMVNO/qrv814jkSrhfU+Yug6vPh4avvDHZe2clQ==
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@stackcine/contracts/-/contracts-1.0.11.tgz#aaf954fdfe1cdbbc4358150b8f26987860734be9"
+  integrity sha512-AGeM+W+FhCe775h9SPCLsLyvAQsjuBhkEs8hgPk2kRJcS6tH1KX3QBCtiHwaiJs18TcHVoaxpDLLFTOAE1Y02Q==
   dependencies:
     "@nestjs/microservices" "^11.1.13"
     "@stackcine/core" "^1.0.7"
@@ -5663,9 +5663,9 @@ ts-proto-descriptors@2.1.0:
     "@bufbuild/protobuf" "^2.0.0"
 
 ts-proto@^2.6.1:
-  version "2.11.2"
-  resolved "https://registry.yarnpkg.com/ts-proto/-/ts-proto-2.11.2.tgz#865847f0cb088cef587fe676714538a53ba720a3"
-  integrity sha512-+bPq2zDwNtJHtuyu2fGYgvTDxS7cBcY4u4moO1LyFA+my144Mfj9/sbNyGXKMtBK7DNXVGf76puwGa6hPzJw/g==
+  version "2.11.4"
+  resolved "https://registry.yarnpkg.com/ts-proto/-/ts-proto-2.11.4.tgz#193093f34106cf850af0cdcff137417ee2c91774"
+  integrity sha512-LGf1llYT/YsZRIzz3nzBei5mR8Sq0xmrL0cI36Pdiuok2V4PHiDuXQGP+D9i3NzChuwURPo8KAmGV1HLH0xHyw==
   dependencies:
     "@bufbuild/protobuf" "^2.10.2"
     case-anything "^2.1.13"
