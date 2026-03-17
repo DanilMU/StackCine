@@ -6,6 +6,7 @@ import {
 	grpcEnv,
 	passportEnv,
 	redisEnv,
+	rmqEnv,
 	telegramEnv,
 } from './config';
 import { MessagingModule } from './infrastructure/messaging/messaging.module';
@@ -26,6 +27,7 @@ import { TokenModule } from './modules/token/token.module';
 				grpcEnv,
 				passportEnv,
 				redisEnv,
+				rmqEnv,
 				telegramEnv,
 			],
 		}),

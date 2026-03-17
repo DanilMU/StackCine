@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
+import type { OtpRequestedEvent } from '@stackcine/contracts';
 
 @Injectable()
 export class MessagingService {
@@ -8,7 +9,7 @@ export class MessagingService {
 		private readonly client: ClientProxy,
 	) {}
 
-	public async otpRequested(data: any) {
+	public async otpRequested(data: OtpRequestedEvent) {
 		return this.client.emit('auth.otp.requested', data);
 	}
 }

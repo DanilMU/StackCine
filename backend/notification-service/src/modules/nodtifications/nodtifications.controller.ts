@@ -1,5 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { Ctx, EventPattern, Payload, RmqContext } from '@nestjs/microservices';
+import type { OtpRequestedEvent } from '@stackcine/contracts';
 import { RmqService } from 'src/infrastructure/rmq/rmq.service';
 
 import { NodtificationsService } from './nodtifications.service';
@@ -12,7 +13,10 @@ export class NodtificationsController {
 	) {}
 
 	@EventPattern('auth.otp.requested')
-	public async otpRequested(@Payload() data: any, @Ctx() ctx: RmqContext) {
+	public async otpRequested(
+		@Payload() data: OtpRequestedEvent,
+		@Ctx() ctx: RmqContext,
+	) {
 		try {
 			console.log(`OTP event received: `, data);
 
