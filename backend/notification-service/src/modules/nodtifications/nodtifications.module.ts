@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
-import { MailService } from 'src/infrastructure/mail/mail.service';
+import { MailModule } from 'src/infrastructure/mail/mail.module';
 
 import { NodtificationsController } from './nodtifications.controller';
 import { NodtificationsService } from './nodtifications.service';
 
 @Module({
+	imports: [MailModule],
 	controllers: [NodtificationsController],
-	providers: [NodtificationsService, MailService],
+	providers: [NodtificationsService],
 })
 export class NodtificationsModule {}
