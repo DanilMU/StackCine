@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
 import configuration from './config/configuration';
+import { MailModule } from './infrastructure/mail/mail.module';
 import { RmqModule } from './infrastructure/rmq/rmq.module';
 import { NodtificationsModule } from './modules/nodtifications/nodtifications.module';
 
@@ -14,6 +15,7 @@ import { NodtificationsModule } from './modules/nodtifications/nodtifications.mo
 		}),
 		RmqModule,
 		NodtificationsModule,
+		MailModule,
 	],
 })
 export class AppModule {}

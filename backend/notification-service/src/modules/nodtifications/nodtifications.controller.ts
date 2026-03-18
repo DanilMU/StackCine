@@ -18,7 +18,7 @@ export class NodtificationsController {
 		@Ctx() ctx: RmqContext,
 	) {
 		try {
-			console.log(`OTP event received: `, data);
+			await this.nodtificationsService.sendOtp(data);
 
 			this.rmqService.ack(ctx);
 		} catch (error) {
