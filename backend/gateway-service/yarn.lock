@@ -1913,15 +1913,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stackcine/contracts@npm:^1.0.9":
-  version: 1.0.11
-  resolution: "@stackcine/contracts@npm:1.0.11"
+"@stackcine/contracts@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@stackcine/contracts@npm:1.1.2"
   dependencies:
     "@nestjs/microservices": "npm:^11.1.13"
     "@stackcine/core": "npm:^1.0.7"
     rxjs: "npm:^7.8.2"
     ts-proto: "npm:^2.6.1"
-  checksum: 10c0/b28616b72e4c1e63e459cdfbb0ac811a3d681bdeec1c5bcbfe178036254a0f23ca12512b4a43b19989b70f854206a9db412532c8279faa7949abd6a17941f5ef
+  checksum: 10c0/4010db6bd182e3197059af1400c7d07a2f6d95fa5a776d546e9b88e8db494bb2ef6a15b82fbca320b49118fe6a1aa7bdb78383239afcd6b8e1de0968ffdc53e2
   languageName: node
   linkType: hard
 
@@ -4856,7 +4856,7 @@ __metadata:
     "@nestjs/swagger": "npm:^11.2.5"
     "@nestjs/testing": "npm:^11.0.1"
     "@stackcine/common": "npm:^1.0.0"
-    "@stackcine/contracts": "npm:^1.0.9"
+    "@stackcine/contracts": "npm:^1.1.2"
     "@stackcine/core": "npm:^1.0.7"
     "@stackcine/passport": "npm:^1.0.0"
     "@swc/cli": "npm:^0.6.0"
