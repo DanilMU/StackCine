@@ -13,6 +13,7 @@ import { UserRepository } from '@/shared/repositories';
 
 import { OtpService } from '../otp/otp.service';
 import { TokenService } from '../token/token.service';
+import { UsersClientGrpc } from '../users/users.grpc';
 
 @Injectable()
 export class AuthService {
@@ -21,6 +22,7 @@ export class AuthService {
 		private readonly otpService: OtpService,
 		private readonly tokenService: TokenService,
 		private readonly messagingService: MessagingService,
+		private readonly usersClient: UsersClientGrpc,
 	) {}
 
 	public async sendOtp(data: SendOtpRequest) {
@@ -43,6 +45,8 @@ export class AuthService {
 			identifier,
 			type as 'phone' | 'email',
 		);
+
+		console.log('CODE: ', code);
 
 		await this.messagingService.otpRequested({
 			identifier,
@@ -74,9 +78,6 @@ export class AuthService {
 				message: 'Account not found',
 			});
 
-		console.log('AuthService: Found account:', account);
-		console.log('AuthService: Account ID:', account.id);
-
 		if (type === 'phone' && !account.isPhoneVerified)
 			await this.userRepository.update(account.id, {
 				isPhoneVerified: true,
@@ -87,10 +88,7 @@ export class AuthService {
 				isEmailVerified: true,
 			});
 
-		console.log(
-			'AuthService: Generating tokens for account ID:',
-			account.id,
-		);
+		this.usersClient.create({ id: account.id }).subscribe();
 
 		return this.tokenService.generate(account.id);
 	}
