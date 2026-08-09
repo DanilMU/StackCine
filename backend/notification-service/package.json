@@ -27,7 +27,7 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/microservices": "^11.1.16",
     "@nestjs/platform-express": "^11.0.1",
-    "@stackcine/contracts": "^1.1.0",
+    "@stackcine/contracts": "^1.1.4",
     "amqp-connection-manager": "^5.0.0",
     "amqplib": "^0.10.9",
     "handlebars": "^4.7.8",
