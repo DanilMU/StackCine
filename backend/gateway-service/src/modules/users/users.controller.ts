@@ -1,9 +1,16 @@
-import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
+import {
+	Body,
+	Controller,
+	Get,
+	HttpCode,
+	HttpStatus,
+	Patch,
+} from '@nestjs/common';
 import { ApiBearerAuth, ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 import { lastValueFrom } from 'rxjs';
 import { CurrentUser, Protected } from 'src/shared/decorators';
 
-import { GetMeResponse } from './dto';
+import { GetMeResponse, PatchUserRequest } from './dto';
 import { UsersClientGrpc } from './users.grpc';
 
 @Controller('users')
@@ -29,5 +36,16 @@ export class UsersController {
 		);
 
 		return user;
+	}
+
+	@ApiBearerAuth()
+	@Protected()
+	@Patch('@me')
+	@HttpCode(HttpStatus.OK)
+	public async patchUser(
+		@CurrentUser() userId: string,
+		@Body() dto: PatchUserRequest,
+	) {
+		return this.client.patchUser({ userId, ...dto });
 	}
 }
