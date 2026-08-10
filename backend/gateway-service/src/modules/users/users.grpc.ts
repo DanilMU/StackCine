@@ -1,5 +1,6 @@
-import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import type { ClientGrpc } from '@nestjs/microservices';
+import { InjectGrpcClient } from '@stackcine/common';
 import type {
 	GetMeRequest,
 	PatchUserRequest,
@@ -11,7 +12,7 @@ export class UsersClientGrpc implements OnModuleInit {
 	private usersService!: UsersServiceClient;
 
 	public constructor(
-		@Inject('USERS_PACKAGE') private readonly client: ClientGrpc,
+		@InjectGrpcClient('USERS_PACKAGE') private readonly client: ClientGrpc,
 	) {}
 
 	public onModuleInit() {

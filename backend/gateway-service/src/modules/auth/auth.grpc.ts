@@ -1,48 +1,22 @@
-import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import type { ClientGrpc } from '@nestjs/microservices';
-import type {
-	AuthServiceClient,
-	RefreshRequest,
-	SendOtpRequest,
-	TelegramConsumeRequest,
-	TelegramVerifyRequest,
-	VerifyOtpRequest,
-} from '@stackcine/contracts/gen/auth';
+import { InjectGrpcClient } from '@stackcine/common';
+import type { AuthServiceClient } from '@stackcine/contracts/gen/auth';
 
 @Injectable()
 export class AuthClientGrpc implements OnModuleInit {
-	private authService!: AuthServiceClient;
+	private svc!: AuthServiceClient;
 
 	public constructor(
-		@Inject('AUTH_PACKAGE') private readonly client: ClientGrpc,
+		@InjectGrpcClient('AUTH_PACKAGE')
+		private readonly client: ClientGrpc,
 	) {}
 
-	public async onModuleInit() {
-		this.authService =
-			this.client.getService<AuthServiceClient>('AuthService');
+	public onModuleInit() {
+		this.svc = this.client.getService<AuthServiceClient>('AuthService');
 	}
 
-	public sendOtp(request: SendOtpRequest) {
-		return this.authService.sendOtp(request);
-	}
-
-	public verifyOtp(request: VerifyOtpRequest) {
-		return this.authService.verifyOtp(request);
-	}
-
-	public refresh(request: RefreshRequest) {
-		return this.authService.refresh(request);
-	}
-
-	public telegramInit() {
-		return this.authService.telegramInit({});
-	}
-
-	public telegramVerify(request: TelegramVerifyRequest) {
-		return this.authService.telegramVerify(request);
-	}
-
-	public telegramConsume(request: TelegramConsumeRequest) {
-		return this.authService.telegramConsume(request);
+	public get service() {
+		return this.svc;
 	}
 }

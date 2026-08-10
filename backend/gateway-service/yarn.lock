@@ -1906,10 +1906,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stackcine/common@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@stackcine/common@npm:1.0.0"
-  checksum: 10c0/22528b0b153e280cfc5615acfe44b5c18195a769fd98188f68fa1d48638d7692f82a16409a6f4c5fdb6508936b88e970b3d7904dbc13adcaa5e3b991a127e3c7
+"@stackcine/common@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@stackcine/common@npm:1.1.1"
+  dependencies:
+    "@stackcine/contracts": "npm:^1.1.4"
+  peerDependencies:
+    "@nestjs/common": ^11.0.0
+    "@nestjs/config": ^4.0.0
+    "@nestjs/core": ^11.0.0
+    "@nestjs/microservices": ^11.0.0
+    rxjs: ^7.0.0
+  checksum: 10c0/6710032c6d20a7c206b215c50d1e79a60e50c547d42d1766ad6d7e891fc6090c7c59814f0c7c68faa17086288a4475278808cce554e4ee36fef44f97dff15fd8
   languageName: node
   linkType: hard
 
@@ -4855,7 +4863,7 @@ __metadata:
     "@nestjs/schematics": "npm:^11.0.0"
     "@nestjs/swagger": "npm:^11.2.5"
     "@nestjs/testing": "npm:^11.0.1"
-    "@stackcine/common": "npm:^1.0.0"
+    "@stackcine/common": "npm:^1.1.1"
     "@stackcine/contracts": "npm:^1.1.4"
     "@stackcine/core": "npm:^1.0.7"
     "@stackcine/passport": "npm:^1.0.0"
