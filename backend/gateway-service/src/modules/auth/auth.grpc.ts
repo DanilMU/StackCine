@@ -1,22 +1,12 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import type { ClientGrpc } from '@nestjs/microservices';
 import { InjectGrpcClient } from '@stackcine/common';
 import type { AuthServiceClient } from '@stackcine/contracts/gen/auth';
+import { AbstractGrpcClient } from 'src/shared/grpc';
 
 @Injectable()
-export class AuthClientGrpc implements OnModuleInit {
-	private svc!: AuthServiceClient;
-
-	public constructor(
-		@InjectGrpcClient('AUTH_PACKAGE')
-		private readonly client: ClientGrpc,
-	) {}
-
-	public onModuleInit() {
-		this.svc = this.client.getService<AuthServiceClient>('AuthService');
-	}
-
-	public get service() {
-		return this.svc;
+export class AuthClientGrpc extends AbstractGrpcClient<AuthServiceClient> {
+	constructor(@InjectGrpcClient('AUTH_PACKAGE') client: ClientGrpc) {
+		super(client, 'AuthService');
 	}
 }

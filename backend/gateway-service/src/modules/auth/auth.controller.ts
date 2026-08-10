@@ -36,7 +36,7 @@ export class AuthController {
 	@Post('otp/send')
 	@HttpCode(HttpStatus.OK)
 	public sendOtp(@Body() dto: SendOtpRequest) {
-		return this.client.service.sendOtp(dto);
+		return this.client.call('sendOtp', dto);
 	}
 
 	@ApiOperation({
@@ -50,8 +50,9 @@ export class AuthController {
 		@Body() dto: VerifyOtpRequest,
 		@Res({ passthrough: true }) res: Response,
 	) {
-		const { accessToken, refreshToken } = await lastValueFrom(
-			this.client.service.verifyOtp(dto),
+		const { accessToken, refreshToken } = await this.client.call(
+			'verifyOtp',
+			dto,
 		);
 
 		res.cookie('refreshToken', refreshToken, {
@@ -80,9 +81,7 @@ export class AuthController {
 		const refreshToken = req.cookies?.refreshToken;
 
 		const { accessToken, refreshToken: newRefreshToken } =
-			await lastValueFrom(
-				this.client.service.refresh({ refreshToken }),
-			);
+			await this.client.call('refresh', { refreshToken });
 
 		res.cookie('refreshToken', newRefreshToken, {
 			httpOnly: true,
@@ -121,7 +120,7 @@ export class AuthController {
 	@Get('telegram')
 	@HttpCode(HttpStatus.OK)
 	public async telegramInit() {
-		return this.client.service.telegramInit({});
+		return this.client.call('telegramInit', {});
 	}
 
 	@Post('telegram/verify')
@@ -132,8 +131,9 @@ export class AuthController {
 	) {
 		const query = JSON.parse(atob(dto.tgAuthResult));
 
-		const result = await lastValueFrom(
-			this.client.service.telegramVerify({ query }),
+		const result = await this.client.call(
+			'telegramVerify',
+			query,
 		);
 
 		if ('url' in result && result.url) return result;
@@ -167,8 +167,9 @@ export class AuthController {
 	) {
 		const { sessionId } = dto;
 
-		const { accessToken, refreshToken } = await lastValueFrom(
-			this.client.service.telegramConsume({ sessionId }),
+		const { accessToken, refreshToken } = await this.client.call(
+			'telegramConsume',
+			dto,
 		);
 
 		res.cookie('refreshToken', refreshToken, {
