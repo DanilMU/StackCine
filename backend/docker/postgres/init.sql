@@ -1,2 +1,2 @@
-CREATE DATABASE stackcine_record_auth;
+CREATE DATABASE stackcine_auth;
 CREATE DATABASE stackcine_record_users;
