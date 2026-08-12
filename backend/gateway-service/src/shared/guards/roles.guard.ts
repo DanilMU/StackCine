@@ -15,7 +15,7 @@ import { ROLES_KEY } from '../decorators';
 export class RolesGuard implements CanActivate {
 	public constructor(
 		private readonly reflector: Reflector,
-		private readonly accountClint: AccountClientGrpc,
+		private readonly accountClient: AccountClientGrpc,
 	) {}
 
 	public async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -32,7 +32,7 @@ export class RolesGuard implements CanActivate {
 
 		if (!user) throw new ForbiddenException('User context missing');
 
-		const account = await this.accountClint.call('getAccount', {
+		const account = await this.accountClient.call('getAccount', {
 			id: user.id,
 		});
 

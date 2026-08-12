@@ -13,7 +13,11 @@ import { getPassportConfig } from './config';
 	imports: [
 		ConfigModule.forRoot({
 			isGlobal: true,
-			envFilePath: '.env.local',
+			envFilePath: [
+				`.env.${process.env.NODE_ENV}.local`,
+				`.env.${process.env.NODE_ENV}`,
+				'.env',
+			],
 		}),
 		PassportModule.registerAsync({
 			usefactory: getPassportConfig,
