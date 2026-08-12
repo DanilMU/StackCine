@@ -56,6 +56,64 @@ services:
     networks:
       - stackcine
 
+  postgres-exporter:
+    container_name: postgres-exporter
+    image: prometheuscommunity/postgres-exporter:latest
+    restart: always
+    environment:
+      DATA_SOURCE_NAME: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/postgres?sslmode=disable"
+    ports:
+      - "9187:9187"
+    networks:
+      - stackcine
+    depends_on:
+      - postgres
+
+  redis-exporter:
+    container_name: redis-exporter
+    image: oliver006/redis_exporter
+    restart: always
+    command: --redis.addr=redis://:${RABBITMQ_DEFAULT_PASS}@redis:6379
+    ports:
+      - "9121:9121"
+    networks:
+      - stackcine
+    depends_on:
+      - redis
+
+  rabbitmq-exporter:
+    container_name: rabbitmq-exporter
+    image: kbudde/rabbitmq-exporter
+    restart: always
+    environment:
+      RABBIT_URL: http://${RABBITMQ_DEFAULT_USER}:${RABBITMQ_DEFAULT_PASS}@rabbitmq:15672
+    ports:
+      - "9419:9419"
+    networks:
+      - stackcine
+    depends_on:
+      - rabbitmq
+
+  node-exporter:
+    container_name: node-exporter
+    image: prom/node-exporter
+    restart: always
+    ports:
+      - "9100:9100"
+    networks:
+      - stackcine
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    restart: always
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - stackcine
+
 volumes:
   postgres_data:
   redis_data:
