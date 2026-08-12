@@ -13,7 +13,7 @@ export const getTypeOrmConfig = (
 		password: configservice.getOrThrow<string>('DATABASE_PASSWORD'),
 		database: configservice.getOrThrow<string>('DATABASE_NAME'),
 		entities: [UserEntity],
-		synchronize: configservice.get<string>('DATABASE_SYNC') === 'true',
+		synchronize: configservice.get<string>('DATABASE_SYNC') === 'false',
 		logging: configservice.get<string>('DATABASE_LOGGING') === 'true',
 		autoLoadEntities: true,
 	};

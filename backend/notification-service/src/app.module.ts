@@ -10,6 +10,11 @@ import { NodtificationsModule } from './modules/nodtifications/nodtifications.mo
 	imports: [
 		ConfigModule.forRoot({
 			isGlobal: true,
+			envFilePath: [
+				`.env.${process.env.NODE_ENV}.local`,
+				`.env.${process.env.NODE_ENV}`,
+				'.env',
+			],
 			load: [configuration],
 			expandVariables: true,
 		}),

@@ -13,7 +13,10 @@ export default new DataSource({
 	password: process.env.DATABASE_PASSWORD,
 	database: process.env.DATABASE_NAME,
 	entities: [UserEntity],
-	migrations: ['src/infrastructure/database/migrations/*.ts'],
+	migrations: [
+		'dist/infrastructure/database/migrations/*.js',
+		'src/infrastructure/database/migrations/*.ts',
+	],
 	synchronize: false,
 	logging: true,
 });

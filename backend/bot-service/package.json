@@ -1,11 +1,12 @@
 {
 	"name": "bot-service",
 	"version": "1.0.0",
+	"packageManager": "yarn@4.15.0",
 	"description": "",
 	"main": "./dist/main.js",
 	"scripts": {
 		"start:dev": "nodemon",
-		"build": "tsc -p tsconfig.json",
+		"build": "tsc -p tsconfig.json && tsc-alias",
 		"start": "node dist/main.js",
 		"format": "prettier --write \"src/**/*.ts\""
 	},
@@ -29,6 +30,7 @@
 		"@stackcine/contracts": "^1.1.4",
 		"dotenv": "^17.3.1",
 		"reflect-metadata": "^0.2.2",
-		"telegraf": "^4.16.3"
+		"telegraf": "^4.16.3",
+		"tsc-alias": "^1.9.1"
 	}
 }
