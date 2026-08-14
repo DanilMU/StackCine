@@ -8,6 +8,7 @@ import {
 	redisEnv,
 	rmqEnv,
 	telegramEnv,
+	tracingEnv,
 } from './config';
 import { MessagingModule } from './infrastructure/messaging/messaging.module';
 import { PrismaModule } from './infrastructure/prisma/prisma.module';
@@ -36,6 +37,7 @@ import { ObservabilityModule } from './observability/observability.module';
 				redisEnv,
 				rmqEnv,
 				telegramEnv,
+				tracingEnv,
 			],
 		}),
 		PrismaModule,

@@ -4,6 +4,7 @@ import type { PassportConfig } from './passport.interface';
 import type { RedisConfig } from './redis.interface';
 import { RmqConfig } from './rmq-interface';
 import type { TelegramConfig } from './telegram.interface';
+import { TracingConfig } from './tracing.interface';
 
 export interface AllConfigs {
 	database: DatabaseConfig;
@@ -12,4 +13,5 @@ export interface AllConfigs {
 	redis: RedisConfig;
 	rmq: RmqConfig;
 	telegram: TelegramConfig;
+	tracing: TracingConfig;
 }

@@ -4,3 +4,4 @@ export * from './passport.validator';
 export * from './redis.validator';
 export * from './rmq.validator';
 export * from './telegram.validator';
+export * from './tracing.validator';

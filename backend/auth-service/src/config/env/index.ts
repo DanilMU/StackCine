@@ -4,3 +4,4 @@ export * from './passport.env';
 export * from './redis.env';
 export * from './rmq.env';
 export * from './telegram.env';
+export * from './tracing.env';
