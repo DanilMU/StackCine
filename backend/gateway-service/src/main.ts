@@ -9,6 +9,7 @@ import {
 	getValidationPipeConfig,
 	setupSwagger,
 } from './core/config';
+import './observability/tracing';
 import { GrpcExceptionFilter } from './shared/filters';
 
 async function bootstrap() {
