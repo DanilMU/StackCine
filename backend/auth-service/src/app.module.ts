@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { LoggerModule } from 'nestjs-pino';
 
 import {
 	databaseEnv,
+	getLoggerConfig,
 	grpcEnv,
 	passportEnv,
 	redisEnv,
@@ -39,6 +41,10 @@ import { ObservabilityModule } from './observability/observability.module';
 				telegramEnv,
 				tracingEnv,
 			],
+		}),
+		LoggerModule.forRootAsync({
+			inject: [ConfigService],
+			useFactory: getLoggerConfig,
 		}),
 		PrismaModule,
 		RedisModule,
