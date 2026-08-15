@@ -140,3 +140,7 @@ QWEN*.md
 **/QWEN*.md
 .gemini/
 
+# Loki data
+backend/docker/loki-data/
+backend/docker/loki-wal/
+
