@@ -1,0 +1,16 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+bin/
+dist/
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Air / Live reload
+tmp/

@@ -162,12 +162,29 @@ services:
     networks:
       - stackcine
 
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin123}
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+    networks:
+      - stackcine
+
 volumes:
   postgres_data:
   redis_data:
   redisinsight_data:
   rabbitmq_data:
   grafana-storage:
+  minio_data:
 
 networks:
   stackcine:
