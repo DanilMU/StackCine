@@ -3,7 +3,7 @@ import type { ClientGrpc } from '@nestjs/microservices';
 import type {
 	CreateUserRequest,
 	UsersServiceClient,
-} from '@stackcine/contracts/gen/users';
+} from '@stackcine/contracts/gen/ts/users';
 
 @Injectable()
 export class UsersClientGrpc implements OnModuleInit {

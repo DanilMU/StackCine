@@ -1,4 +1,5 @@
 # Binaries
+media-service
 *.exe
 *.exe~
 *.dll
@@ -6,6 +7,10 @@
 *.dylib
 bin/
 dist/
+
+# Test binaries
+*.test
+*.out
 
 # Env
 .env

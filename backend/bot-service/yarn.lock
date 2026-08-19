@@ -356,15 +356,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stackcine/contracts@npm:^1.1.4":
-  version: 1.1.4
-  resolution: "@stackcine/contracts@npm:1.1.4"
+"@stackcine/contracts@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "@stackcine/contracts@npm:1.4.0"
   dependencies:
     "@nestjs/microservices": "npm:^11.1.13"
     "@stackcine/core": "npm:^1.0.7"
     rxjs: "npm:^7.8.2"
     ts-proto: "npm:^2.6.1"
-  checksum: 10c0/e4d15265230de1785f343260dee361a9f7273983ea3410073c135bc4cded39ab72f8eec569d2c4cb881726f757c88b77088a1d1a120ddef9d7f4fb1c3d76e978
+  checksum: 10c0/7608f864b5737ca86686796dbd24bbf2a8ba6f53c196ca91206dc8211ba3e60a4ea30b19f3769127f6630f88f5b33bd4ffe9391b84df3bb05126e0679c240170
   languageName: node
   linkType: hard
 
@@ -592,7 +592,7 @@ __metadata:
     "@grpc/grpc-js": "npm:^1.14.3"
     "@grpc/proto-loader": "npm:^0.8.0"
     "@nestjs/platform-express": "npm:^11.0.1"
-    "@stackcine/contracts": "npm:^1.1.4"
+    "@stackcine/contracts": "npm:^1.4.0"
     "@stackcine/core": "npm:^1.0.7"
     "@types/node": "npm:^25.3.3"
     dotenv: "npm:^17.3.1"

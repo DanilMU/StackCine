@@ -1,7 +1,7 @@
 import {
 	TelegramCompleteRequest,
 	TelegramCompleteResponse,
-} from '@stackcine/contracts/gen/auth';
+} from '@stackcine/contracts/gen/ts/auth';
 import type { Telegraf } from 'telegraf';
 
 import { authClient } from '@/infrastructure/grpc/auth.client';

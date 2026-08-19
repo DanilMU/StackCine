@@ -6,7 +6,7 @@ import type {
 	RefreshRequest,
 	SendOtpRequest,
 	VerifyOtpRequest,
-} from '@stackcine/contracts/gen/auth';
+} from '@stackcine/contracts/gen/ts/auth';
 import { PinoLogger } from 'nestjs-pino';
 
 import { MessagingService } from '@/infrastructure/messaging/messaging.service';

@@ -7,7 +7,7 @@ import type {
 	GetMeResponse,
 	PatchUserRequest,
 	PatchUserResponse,
-} from '@stackcine/contracts/gen/users';
+} from '@stackcine/contracts/gen/ts/users';
 
 import { UsersService } from './users.service';
 

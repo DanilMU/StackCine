@@ -5,7 +5,7 @@ import {
 	AUTH_SERVICE_NAME,
 	AUTH_V1_PACKAGE_NAME,
 	type AuthServiceClient,
-} from '@stackcine/contracts/gen/auth';
+} from '@stackcine/contracts/gen/ts/auth';
 
 import { CONFIG } from '@/config';
 

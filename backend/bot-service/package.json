@@ -27,7 +27,7 @@
 		"@grpc/grpc-js": "^1.14.3",
 		"@grpc/proto-loader": "^0.8.0",
 		"@nestjs/platform-express": "^11.0.1",
-		"@stackcine/contracts": "^1.1.4",
+		"@stackcine/contracts": "^1.4.0",
 		"dotenv": "^17.3.1",
 		"reflect-metadata": "^0.2.2",
 		"telegraf": "^4.16.3",

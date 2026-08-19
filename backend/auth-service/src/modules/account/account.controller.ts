@@ -11,7 +11,7 @@ import type {
 	InitEmailChangeResponse,
 	InitPhoneChangeRequest,
 	InitPhoneChangeResponse,
-} from '@stackcine/contracts/gen/account';
+} from '@stackcine/contracts/gen/ts/account';
 
 import { AccountService } from './account.service';
 

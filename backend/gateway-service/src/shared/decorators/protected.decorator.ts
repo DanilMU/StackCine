@@ -1,5 +1,5 @@
 import { applyDecorators, UseGuards } from '@nestjs/common';
-import type { Role } from '@stackcine/contracts/gen/account';
+import type { Role } from '@stackcine/contracts/gen/ts/account';
 
 import { AuthGuard, RolesGuard } from '../guards';
 

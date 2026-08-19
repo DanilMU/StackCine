@@ -8,7 +8,7 @@ import type {
 	TelegramInitResponse,
 	TelegramVerifyRequest,
 	TelegramVerifyResponse,
-} from '@stackcine/contracts/gen/auth';
+} from '@stackcine/contracts/gen/ts/auth';
 
 import { TelegramService } from './telegram.service';
 

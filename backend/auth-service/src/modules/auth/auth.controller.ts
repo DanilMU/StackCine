@@ -7,7 +7,7 @@ import type {
 	SendOtpResponse,
 	VerifyOtpRequest,
 	VerifyOtpResponse,
-} from '@stackcine/contracts/gen/auth';
+} from '@stackcine/contracts/gen/ts/auth';
 
 import { AuthService } from './auth.service';
 

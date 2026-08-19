@@ -1701,30 +1701,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stackcine/common@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@stackcine/common@npm:1.1.1"
+"@stackcine/common@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@stackcine/common@npm:1.2.0"
   dependencies:
-    "@stackcine/contracts": "npm:^1.1.4"
+    "@stackcine/contracts": "npm:^1.4.0"
   peerDependencies:
     "@nestjs/common": ^11.0.0
     "@nestjs/config": ^4.0.0
     "@nestjs/core": ^11.0.0
     "@nestjs/microservices": ^11.0.0
     rxjs: ^7.0.0
-  checksum: 10c0/6710032c6d20a7c206b215c50d1e79a60e50c547d42d1766ad6d7e891fc6090c7c59814f0c7c68faa17086288a4475278808cce554e4ee36fef44f97dff15fd8
+  checksum: 10c0/57e95e07a8900e3125c8a64074d66b6ae1d95237a5c53276465fd1fbe4575ff09aa72a14491cc359126b084737c1a08bc02a6ed532b22be2a2474766eb9e6dbe
   languageName: node
   linkType: hard
 
-"@stackcine/contracts@npm:^1.1.4":
-  version: 1.1.4
-  resolution: "@stackcine/contracts@npm:1.1.4"
+"@stackcine/contracts@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "@stackcine/contracts@npm:1.4.0"
   dependencies:
     "@nestjs/microservices": "npm:^11.1.13"
     "@stackcine/core": "npm:^1.0.7"
     rxjs: "npm:^7.8.2"
     ts-proto: "npm:^2.6.1"
-  checksum: 10c0/e4d15265230de1785f343260dee361a9f7273983ea3410073c135bc4cded39ab72f8eec569d2c4cb881726f757c88b77088a1d1a120ddef9d7f4fb1c3d76e978
+  checksum: 10c0/7608f864b5737ca86686796dbd24bbf2a8ba6f53c196ca91206dc8211ba3e60a4ea30b19f3769127f6630f88f5b33bd4ffe9391b84df3bb05126e0679c240170
   languageName: node
   linkType: hard
 
@@ -7437,8 +7437,8 @@ __metadata:
     "@nestjs/schematics": "npm:^11.0.0"
     "@nestjs/testing": "npm:^11.0.1"
     "@nestjs/typeorm": "npm:^11.0.3"
-    "@stackcine/common": "npm:^1.1.1"
-    "@stackcine/contracts": "npm:^1.1.4"
+    "@stackcine/common": "npm:^1.2.0"
+    "@stackcine/contracts": "npm:^1.4.0"
     "@stackcine/core": "npm:^1.0.7"
     "@types/express": "npm:^5.0.0"
     "@types/jest": "npm:^30.0.0"

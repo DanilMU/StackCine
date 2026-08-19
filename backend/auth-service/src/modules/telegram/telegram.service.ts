@@ -6,7 +6,7 @@ import type {
 	TelegramCompleteRequest,
 	TelegramConsumeRequest,
 	TelegramVerifyRequest,
-} from '@stackcine/contracts/gen/auth';
+} from '@stackcine/contracts/gen/ts/auth';
 import { createHash, createHmac, randomBytes } from 'crypto';
 
 import { AllConfigs } from '@/config';

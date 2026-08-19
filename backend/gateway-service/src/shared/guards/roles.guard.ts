@@ -6,7 +6,7 @@ import {
 	NotFoundException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import type { Role } from '@stackcine/contracts/gen/account';
+import type { Role } from '@stackcine/contracts/gen/ts/account';
 import { AccountClientGrpc } from 'src/modules/account/account.grpc';
 
 import { ROLES_KEY } from '../decorators';

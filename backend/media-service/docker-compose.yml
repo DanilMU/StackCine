@@ -1,0 +1,19 @@
+services:
+  media-service:
+    container_name: media-service
+    image: stackcine/media-service:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - '8084:8084'
+      - '50054:50054'
+    networks:
+      - stackcine
+
+networks:
+  stackcine:
+    external: true

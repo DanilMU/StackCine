@@ -5,7 +5,7 @@ import type {
 	CreateUserRequest,
 	GetMeRequest,
 	PatchUserRequest,
-} from '@stackcine/contracts/gen/users';
+} from '@stackcine/contracts/gen/ts/users';
 import { lastValueFrom } from 'rxjs';
 import { AccountClientGrpc } from 'src/infrastructure/grpc/clients/account.client';
 
@@ -53,7 +53,7 @@ export class UsersService {
 	}
 
 	public async patchUser(data: PatchUserRequest) {
-		const { userId, name } = data;
+		const { userId, name, avatar } = data;
 
 		const user = await this.usersRepository.findById(userId);
 
@@ -65,6 +65,7 @@ export class UsersService {
 
 		await this.usersRepository.update(userId, {
 			...(name !== undefined && { name }),
+			...(avatar !== undefined && { avatar }),
 		});
 
 		return { ok: true };

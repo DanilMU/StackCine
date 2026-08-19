@@ -7,7 +7,7 @@ import type {
 	GetAccountRequest,
 	InitEmailChangeRequest,
 	InitPhoneChangeRequest,
-} from '@stackcine/contracts/gen/account';
+} from '@stackcine/contracts/gen/ts/account';
 
 import { UserRepository } from '@/shared/repositories';
 
