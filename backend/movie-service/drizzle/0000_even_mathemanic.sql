@@ -15,7 +15,7 @@ CREATE TABLE "movies" (
 	"slug" varchar(255),
 	"description" text NOT NULL,
 	"poster" text NOT NULL,
-	"bunner" text NOT NULL,
+	"banner" text NOT NULL,
 	"duration" integer DEFAULT 0 NOT NULL,
 	"release_year" integer,
 	"release_date" timestamp,

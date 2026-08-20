@@ -17,7 +17,7 @@ export const movies = pgTable('movies', {
 	slug: varchar('slug', { length: 255 }).unique(),
 	description: text('description').notNull(),
 	poster: text('poster').notNull(),
-	bunner: text('bunner').notNull(),
+	banner: text('banner').notNull(),
 	duration: integer('duration').default(0).notNull(),
 	releaseYear: integer('release_year'),
 	releaseDate: timestamp('release_date'),

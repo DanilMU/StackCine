@@ -107,8 +107,8 @@
           "primaryKey": false,
           "notNull": true
         },
-        "bunner": {
-          "name": "bunner",
+        "banner": {
+          "name": "banner",
           "type": "text",
           "primaryKey": false,
           "notNull": true
