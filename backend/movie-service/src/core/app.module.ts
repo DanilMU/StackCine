@@ -5,7 +5,14 @@ import { MovieModule } from 'src/modules/movie/movie.module';
 
 @Module({
 	imports: [
-		ConfigModule.forRoot({ isGlobal: true }),
+		ConfigModule.forRoot({
+			isGlobal: true,
+			envFilePath: [
+				`.env.${process.env.NODE_ENV}.local`,
+				`.env.${process.env.NODE_ENV}`,
+				'.env',
+			],
+		}),
 		DatabaseModule,
 		MovieModule,
 	],
