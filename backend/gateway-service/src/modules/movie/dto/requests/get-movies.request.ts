@@ -1,4 +1,4 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import {
 	IsBoolean,
@@ -10,13 +10,14 @@ import {
 } from 'class-validator';
 
 export class GetMoviesRequest {
-	@ApiProperty({
+	@ApiPropertyOptional({
 		example: 'classic',
+		description: 'Movie category',
 	})
 	@IsOptional()
 	@IsString()
-	@Transform(({ value }) => value.toString().trim())
-	public category!: string;
+	@Transform(({ value }) => (value ? String(value).trim() : undefined))
+	public category?: string;
 
 	@ApiPropertyOptional({
 		example: 'true',
@@ -24,22 +25,22 @@ export class GetMoviesRequest {
 	@IsOptional()
 	@IsBoolean()
 	@Transform(({ value }) => {
-		if (value === 'true') return true;
-		if (value === 'false') return false;
+		if (value === 'true' || value === true) return true;
+		if (value === 'false' || value === false) return false;
 
-		return value;
+		return undefined;
 	})
-	public random!: boolean;
+	public random?: boolean;
 
 	@ApiPropertyOptional({
 		example: 13,
 	})
-	@IsInt()
 	@IsOptional()
+	@IsInt()
 	@Min(1)
 	@Max(100)
 	@Transform(({ value }) =>
-		value !== undefined ? Number(value) : undefined,
+		value !== undefined && value !== '' ? Number(value) : undefined,
 	)
-	public limit!: number;
+	public limit?: number;
 }

@@ -69,7 +69,7 @@ export class MovieRepository {
 					isNull(movies.releaseDate),
 				),
 			);
-		} else if (filter.category) {
+		} else if (filter.category && filter.category !== 'all') {
 			conditions.push(eq(categories.slug, filter.category));
 		}
 

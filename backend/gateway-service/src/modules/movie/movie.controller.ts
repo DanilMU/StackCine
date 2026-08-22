@@ -18,7 +18,11 @@ export class MovieController {
 	@Get()
 	@HttpCode(HttpStatus.OK)
 	public async getAll(@Query() dto: GetMoviesRequest) {
-		return this.movie.call('listMovies', dto);
+		return this.movie.call('listMovies', {
+			category: dto.category ?? '',
+			random: dto.random === true,
+			limit: dto.limit ?? 0,
+		});
 	}
 
 	@Get(':slug')
