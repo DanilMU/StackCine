@@ -8,7 +8,7 @@ export class MovieMapper {
 			slug: entity.slug,
 			poster: entity.poster,
 			ratingAge: entity.ratingAge ?? 0,
-			releaseDate: this.toDate(entity.releaseDate),
+			releaseDate: MovieMapper.toDate(entity.releaseDate),
 		};
 	}
 
@@ -23,7 +23,7 @@ export class MovieMapper {
 			duration: entity.duration ?? 0,
 			ratingAge: entity.ratingAge ?? 0,
 			country: entity.country ?? '',
-			releaseDate: this.toDate(entity.releaseDate),
+			releaseDate: MovieMapper.toDate(entity.releaseDate),
 		};
 	}
 

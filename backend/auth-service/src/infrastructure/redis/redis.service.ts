@@ -26,6 +26,7 @@ export class RedisService
 			}),
 			host: configService.get('redis.host', { infer: true }),
 			port: configService.get('redis.port', { infer: true }),
+			db: parseInt(configService.get('redis.db', { infer: true })),
 			maxRetriesPerRequest: 5,
 			enableOfflineQueue: true,
 		});

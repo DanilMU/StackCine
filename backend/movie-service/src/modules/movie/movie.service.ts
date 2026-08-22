@@ -6,30 +6,62 @@ import type {
 	GetMovieResponse,
 	ListMoviesRequest,
 	ListMoviesResponse,
+	MovieDetails,
 } from '@stackcine/contracts/gen/ts/movie';
 
+import { MovieCacheKeys } from './movie.cache.keys';
+import { MovieCacheService } from './movie.cache.service';
 import { MovieMapper } from './movie.mapper';
 import { MovieRepository } from './movie.repository';
 
 @Injectable()
 export class MovieService {
-	public constructor(private readonly movieRepository: MovieRepository) {}
+	public constructor(
+		private readonly movieRepository: MovieRepository,
+		private readonly movieCacheService: MovieCacheService,
+	) {}
 
-	public async getAll(data: ListMoviesRequest): Promise<ListMoviesResponse> {
+	public async getAll(
+		data: ListMoviesRequest,
+	): Promise<ListMoviesResponse> {
 		const filter: ListMoviesRequest = {
 			category: data.category || '',
 			random: data.random === true,
 			limit: data.limit && data.limit > 0 ? data.limit : 0,
 		};
 
+		const cached =
+			await this.movieCacheService.getAll<
+				ListMoviesResponse['movies']
+			>(filter);
+
+		if (cached) {
+			return { movies: cached };
+		}
+
 		const movies = await this.movieRepository.findAll(filter);
 
+		const result = movies.map(MovieMapper.toMovie);
+
+		await this.movieCacheService.setAll(filter, result);
+
 		return {
-			movies: movies.map((movie) => MovieMapper.toMovie(movie)),
+			movies: result,
 		};
 	}
 
 	public async getOne(data: GetMovieRequest): Promise<GetMovieResponse> {
+		const cacheKey = data.id
+			? MovieCacheKeys.byId(data.id)
+			: MovieCacheKeys.bySlug(data.slug);
+
+		const cached =
+			await this.movieCacheService.get<MovieDetails>(cacheKey);
+
+		if (cached) {
+			return { movie: cached };
+		}
+
 		const movie = await (data.id
 			? this.movieRepository.findById(data.id)
 			: data.slug
@@ -43,6 +75,9 @@ export class MovieService {
 			});
 		}
 
-		return { movie: MovieMapper.toMovieDetails(movie) };
+		const mapped = MovieMapper.toMovieDetails(movie);
+		await this.movieCacheService.set(cacheKey, mapped);
+
+		return { movie: mapped };
 	}
 }
