@@ -10,6 +10,7 @@ import {
 
 import { GetMoviesRequest } from './dto';
 import { MovieClientGrpc } from './movie.grpc';
+import { MovieMapper } from './movie.mapper';
 
 @Controller('movies')
 export class MovieController {
@@ -18,16 +19,22 @@ export class MovieController {
 	@Get()
 	@HttpCode(HttpStatus.OK)
 	public async getAll(@Query() dto: GetMoviesRequest) {
-		return this.movie.call('listMovies', {
+		const { movies } = await this.movie.call('listMovies', {
 			category: dto.category ?? '',
 			random: dto.random === true,
 			limit: dto.limit ?? 0,
 		});
+
+		return Array.isArray(movies)
+			? movies.map((movie) => MovieMapper.toMovie(movie))
+			: movies;
 	}
 
 	@Get(':slug')
 	@HttpCode(HttpStatus.OK)
 	public async getBySlug(@Param('slug') slug: string) {
-		return this.movie.call('getMovie', { slug });
+		const { movie } = await this.movie.call('getMovie', { slug });
+
+		return MovieMapper.toMovie(movie);
 	}
 }

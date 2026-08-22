@@ -2997,9 +2997,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stackcine/common@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "@stackcine/common@npm:1.2.1"
+"@stackcine/common@npm:^1.2.3":
+  version: 1.2.3
+  resolution: "@stackcine/common@npm:1.2.3"
   dependencies:
     "@stackcine/contracts": "npm:^1.5.1"
   peerDependencies:
@@ -3008,7 +3008,7 @@ __metadata:
     "@nestjs/core": ^11.0.0
     "@nestjs/microservices": ^11.0.0
     rxjs: ^7.0.0
-  checksum: 10c0/62d03401c4000d4e95e64c3512a3354672ca90396a9c7ba4bcdbb240237d196716439e063b2a84323a76c7a0e102f2d7b24e8697455bf39edf26018a0a665460
+  checksum: 10c0/dc582844b12fa45f4d8d73386afc8f38c462542c8d439d6add0ad17d0af16426bfddda242ec349d59ea59a482aa292905ad4f86e9602512c8f503f820e85559b
   languageName: node
   linkType: hard
 
@@ -6196,7 +6196,7 @@ __metadata:
     "@opentelemetry/resources": "npm:^2.10.0"
     "@opentelemetry/sdk-node": "npm:^0.221.0"
     "@opentelemetry/semantic-conventions": "npm:^1.43.0"
-    "@stackcine/common": "npm:^1.2.1"
+    "@stackcine/common": "npm:^1.2.3"
     "@stackcine/contracts": "npm:^1.5.1"
     "@stackcine/core": "npm:^1.0.7"
     "@stackcine/passport": "npm:^1.0.0"
