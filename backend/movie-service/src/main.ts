@@ -11,7 +11,8 @@ async function bootstrap() {
 
 	setupGrpc(app, config);
 
-	app.startAllMicroservices();
-	app.init();
+	await app.startAllMicroservices();
+	await app.init();
 }
-bootstrap();
+
+void bootstrap();
