@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from 'src/infra/database/database.module';
+import { CategoryModule } from 'src/modules/category/category.module';
 import { MovieModule } from 'src/modules/movie/movie.module';
 
 @Module({
@@ -15,6 +16,7 @@ import { MovieModule } from 'src/modules/movie/movie.module';
 		}),
 		DatabaseModule,
 		MovieModule,
+		CategoryModule,
 	],
 })
 export class AppModule {}
