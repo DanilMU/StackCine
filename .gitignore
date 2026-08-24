@@ -135,10 +135,28 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# AI artifacts
+# AI artifacts & Agent memory
 QWEN*.md
 **/QWEN*.md
+**/*@qwen*
+AGENTS.md
+**/AGENTS.md
+memory.md
+**/memory.md
+GEMINI.md
+**/GEMINI.md
+CLAUDE.md
+**/CLAUDE.md
+*.context.md
+**/*-context.md
 .gemini/
+**/.gemini/
+.antigravity/
+**/.antigravity/
+.agent/
+**/.agent/
+.claude/
+**/.claude/
 
 # Loki data
 backend/docker/loki-data/
