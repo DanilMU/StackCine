@@ -155,8 +155,14 @@ CLAUDE.md
 **/.antigravity/
 .agent/
 **/.agent/
+.agents/
+**/.agents/
 .claude/
 **/.claude/
+.windsurf/
+**/.windsurf/
+skills-lock.json
+**/skills-lock.json
 
 # Loki data
 backend/docker/loki-data/
