@@ -27,7 +27,7 @@ export class MovieController {
 
 		return Array.isArray(response.movies)
 			? response.movies.map((movie) => MovieMapper.toMovie(movie))
-			: response;
+			: [];
 	}
 
 	@Get(':slug')

@@ -13,6 +13,6 @@ export class CategoryController {
 
 		return Array.isArray(response.categories)
 			? response.categories
-			: response;
+			: [];
 	}
 }
