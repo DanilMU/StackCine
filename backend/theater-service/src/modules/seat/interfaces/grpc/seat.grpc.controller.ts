@@ -24,7 +24,7 @@ export class SeatGrpcController {
 		return { seat };
 	}
 
-	@GrpcMethod('SeatService', 'ListSeats')
+	@GrpcMethod('SeatService', 'ListSeatsByHall')
 	public async getAll(data: ListSeatsRequest): Promise<ListSeatsResponse> {
 		const seats = await this.listUC.execute(
 			data.hallId,

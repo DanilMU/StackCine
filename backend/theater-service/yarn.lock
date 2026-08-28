@@ -1994,42 +1994,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stackcine/common@npm:^1.2.8":
-  version: 1.2.8
-  resolution: "@stackcine/common@npm:1.2.8"
+"@stackcine/common@npm:^1.2.9":
+  version: 1.2.9
+  resolution: "@stackcine/common@npm:1.2.9"
   dependencies:
-    "@stackcine/contracts": "npm:^1.6.0"
+    "@stackcine/contracts": "npm:^1.6.5"
   peerDependencies:
     "@nestjs/common": ^11.0.0
     "@nestjs/config": ^4.0.0
     "@nestjs/core": ^11.0.0
     "@nestjs/microservices": ^11.0.0
     rxjs: ^7.0.0
-  checksum: 10c0/46677c165356a602cb214920d274078172f3d23899e3e06ad90524db7bfb156aa80e568bae2712fc4cd1f23fdf2c9ae79475560ee6e86f3f54459512fb5587b7
+  checksum: 10c0/7493955150badc15e356693a16dc643415fe7c8743f9328486f8faba0f6dc8157272648118ea6f8d51398a7ae1e57d2f7fa2a4dce946b2af895e5185d2b419fa
   languageName: node
   linkType: hard
 
-"@stackcine/contracts@npm:^1.6.0":
-  version: 1.6.0
-  resolution: "@stackcine/contracts@npm:1.6.0"
+"@stackcine/contracts@npm:^1.6.5":
+  version: 1.6.5
+  resolution: "@stackcine/contracts@npm:1.6.5"
   dependencies:
     "@nestjs/microservices": "npm:^11.1.13"
     "@stackcine/core": "npm:^1.0.7"
     rxjs: "npm:^7.8.2"
     ts-proto: "npm:^2.6.1"
-  checksum: 10c0/bc3db5dfd072621d81acba93f954044aaf2a828845098ed7efad257202ceec65e38ace228c52a1af5fb5a9ef4fbbffcdb06cc75715f96850c9883a4b33b75c48
-  languageName: node
-  linkType: hard
-
-"@stackcine/contracts@npm:^1.6.3":
-  version: 1.6.3
-  resolution: "@stackcine/contracts@npm:1.6.3"
-  dependencies:
-    "@nestjs/microservices": "npm:^11.1.13"
-    "@stackcine/core": "npm:^1.0.7"
-    rxjs: "npm:^7.8.2"
-    ts-proto: "npm:^2.6.1"
-  checksum: 10c0/0c15383f39732e2f1a8931546005921a6ee0e13b52b1557b6360aae1d707c2ba64e7d789cfc8ad2fa648d890ea3c27de6e712dc2268684b35bb062467c56229b
+  checksum: 10c0/5dc2d8abe883c018d4f2fabde24058e382e507d4fee09346d15a4ca64171ba37fa16e0ca37264239939a1f524d8b7cc58ccc1303e6bd29836596f29d850a738b
   languageName: node
   linkType: hard
 
@@ -7953,8 +7941,8 @@ __metadata:
     "@nestjs/testing": "npm:^11.0.1"
     "@prisma/adapter-pg": "npm:^7.9.1"
     "@prisma/client": "npm:^7.9.1"
-    "@stackcine/common": "npm:^1.2.8"
-    "@stackcine/contracts": "npm:^1.6.3"
+    "@stackcine/common": "npm:^1.2.9"
+    "@stackcine/contracts": "npm:^1.6.5"
     "@stackcine/core": "npm:^1.0.7"
     "@types/express": "npm:^5.0.0"
     "@types/jest": "npm:^30.0.0"
