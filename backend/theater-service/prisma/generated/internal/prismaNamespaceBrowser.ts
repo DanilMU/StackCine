@@ -51,7 +51,9 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Theater: 'Theater'
+  Theater: 'Theater',
+  Hall: 'Hall',
+  Seat: 'Seat'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -79,6 +81,33 @@ export const TheaterScalarFieldEnum = {
 } as const
 
 export type TheaterScalarFieldEnum = (typeof TheaterScalarFieldEnum)[keyof typeof TheaterScalarFieldEnum]
+
+
+export const HallScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  theaterId: 'theaterId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type HallScalarFieldEnum = (typeof HallScalarFieldEnum)[keyof typeof HallScalarFieldEnum]
+
+
+export const SeatScalarFieldEnum = {
+  id: 'id',
+  row: 'row',
+  number: 'number',
+  x: 'x',
+  y: 'y',
+  type: 'type',
+  price: 'price',
+  hallId: 'hallId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SeatScalarFieldEnum = (typeof SeatScalarFieldEnum)[keyof typeof SeatScalarFieldEnum]
 
 
 export const SortOrder = {

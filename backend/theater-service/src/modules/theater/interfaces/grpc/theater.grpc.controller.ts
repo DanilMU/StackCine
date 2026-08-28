@@ -4,20 +4,20 @@ import type {
 	CreateTheaterRequest,
 	CreateTheaterResponse,
 	GetTheaterRequest,
-	getTheaterResponse,
+	GetTheaterResponse,
 	ListTheatersResponse,
 } from '@stackcine/contracts/gen/ts/theater';
 
-import { CreateTheaterUseCase } from '../../application/commands/create-theater.usecase';
+import { CreateTheaterUsecase } from '../../application/commands/create-theater.usecase';
 import { GetTheaterUsecase } from '../../application/queries/get-theater.usecase';
-import { ListTheaterUseCase } from '../../application/queries/list-theaters.usecase';
+import { ListTheaterUsecase } from '../../application/queries/list-theaters.usecase';
 
 @Controller()
 export class TheaterGrpcController {
 	public constructor(
-		private readonly listUC: ListTheaterUseCase,
+		private readonly listUC: ListTheaterUsecase,
 		private readonly getUC: GetTheaterUsecase,
-		private readonly createUC: CreateTheaterUseCase,
+		private readonly createUC: CreateTheaterUsecase,
 	) {}
 
 	@GrpcMethod('TheaterService', 'ListTheaters')
@@ -30,7 +30,7 @@ export class TheaterGrpcController {
 	@GrpcMethod('TheaterService', 'GetTheater')
 	public async getById(
 		data: GetTheaterRequest,
-	): Promise<getTheaterResponse> {
+	): Promise<GetTheaterResponse> {
 		const theater = await this.getUC.execute(data.id);
 
 		return { theater };

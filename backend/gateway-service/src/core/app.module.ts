@@ -4,6 +4,7 @@ import { PassportModule } from '@stackcine/passport';
 import { AccountModule } from 'src/modules/account/account.module';
 import { AuthModule } from 'src/modules/auth/auth.module';
 import { CategoryModule } from 'src/modules/category/category.module';
+import { HallModule } from 'src/modules/hall/hall.module';
 import { MovieModule } from 'src/modules/movie/movie.module';
 import { TheaterModule } from 'src/modules/theater/theater.module';
 import { UsersModule } from 'src/modules/users/users.module';
@@ -34,6 +35,7 @@ import { getPassportConfig } from './config';
 		MovieModule,
 		CategoryModule,
 		TheaterModule,
+		HallModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],

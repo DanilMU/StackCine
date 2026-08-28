@@ -15,8 +15,12 @@ async function bootstrap() {
 	app.connectMicroservice<MicroserviceOptions>({
 		transport: Transport.GRPC,
 		options: {
-			package: ['theater.v1'],
-			protoPath: [PROTO_PATHS.THEATER],
+			package: ['theater.v1', 'hall.v1', 'seat.v1'],
+			protoPath: [
+				PROTO_PATHS.THEATER,
+				PROTO_PATHS.HALL,
+				PROTO_PATHS.SEAT,
+			],
 			url,
 			loader: {
 				keepCase: false,

@@ -1,2 +1,4 @@
 CREATE DATABASE stackcine_auth;
 CREATE DATABASE stackcine_record_users;
+CREATE DATABASE stackcine_record_movies;
+CREATE DATABASE stackcine_record_theater;

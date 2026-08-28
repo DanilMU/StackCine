@@ -182,6 +182,7 @@ export type TheaterWhereInput = {
   address?: Prisma.StringFilter<"Theater"> | string
   createdAt?: Prisma.DateTimeFilter<"Theater"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Theater"> | Date | string
+  halls?: Prisma.HallListRelationFilter
 }
 
 export type TheaterOrderByWithRelationInput = {
@@ -190,6 +191,7 @@ export type TheaterOrderByWithRelationInput = {
   address?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  halls?: Prisma.HallOrderByRelationAggregateInput
 }
 
 export type TheaterWhereUniqueInput = Prisma.AtLeast<{
@@ -201,6 +203,7 @@ export type TheaterWhereUniqueInput = Prisma.AtLeast<{
   address?: Prisma.StringFilter<"Theater"> | string
   createdAt?: Prisma.DateTimeFilter<"Theater"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Theater"> | Date | string
+  halls?: Prisma.HallListRelationFilter
 }, "id">
 
 export type TheaterOrderByWithAggregationInput = {
@@ -231,6 +234,7 @@ export type TheaterCreateInput = {
   address: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  halls?: Prisma.HallCreateNestedManyWithoutTheaterInput
 }
 
 export type TheaterUncheckedCreateInput = {
@@ -239,6 +243,7 @@ export type TheaterUncheckedCreateInput = {
   address: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  halls?: Prisma.HallUncheckedCreateNestedManyWithoutTheaterInput
 }
 
 export type TheaterUpdateInput = {
@@ -247,6 +252,7 @@ export type TheaterUpdateInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  halls?: Prisma.HallUpdateManyWithoutTheaterNestedInput
 }
 
 export type TheaterUncheckedUpdateInput = {
@@ -255,6 +261,7 @@ export type TheaterUncheckedUpdateInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  halls?: Prisma.HallUncheckedUpdateManyWithoutTheaterNestedInput
 }
 
 export type TheaterCreateManyInput = {
@@ -305,6 +312,11 @@ export type TheaterMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
+export type TheaterScalarRelationFilter = {
+  is?: Prisma.TheaterWhereInput
+  isNot?: Prisma.TheaterWhereInput
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -313,6 +325,97 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
+export type TheaterCreateNestedOneWithoutHallsInput = {
+  create?: Prisma.XOR<Prisma.TheaterCreateWithoutHallsInput, Prisma.TheaterUncheckedCreateWithoutHallsInput>
+  connectOrCreate?: Prisma.TheaterCreateOrConnectWithoutHallsInput
+  connect?: Prisma.TheaterWhereUniqueInput
+}
+
+export type TheaterUpdateOneRequiredWithoutHallsNestedInput = {
+  create?: Prisma.XOR<Prisma.TheaterCreateWithoutHallsInput, Prisma.TheaterUncheckedCreateWithoutHallsInput>
+  connectOrCreate?: Prisma.TheaterCreateOrConnectWithoutHallsInput
+  upsert?: Prisma.TheaterUpsertWithoutHallsInput
+  connect?: Prisma.TheaterWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TheaterUpdateToOneWithWhereWithoutHallsInput, Prisma.TheaterUpdateWithoutHallsInput>, Prisma.TheaterUncheckedUpdateWithoutHallsInput>
+}
+
+export type TheaterCreateWithoutHallsInput = {
+  id?: string
+  name: string
+  address: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type TheaterUncheckedCreateWithoutHallsInput = {
+  id?: string
+  name: string
+  address: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type TheaterCreateOrConnectWithoutHallsInput = {
+  where: Prisma.TheaterWhereUniqueInput
+  create: Prisma.XOR<Prisma.TheaterCreateWithoutHallsInput, Prisma.TheaterUncheckedCreateWithoutHallsInput>
+}
+
+export type TheaterUpsertWithoutHallsInput = {
+  update: Prisma.XOR<Prisma.TheaterUpdateWithoutHallsInput, Prisma.TheaterUncheckedUpdateWithoutHallsInput>
+  create: Prisma.XOR<Prisma.TheaterCreateWithoutHallsInput, Prisma.TheaterUncheckedCreateWithoutHallsInput>
+  where?: Prisma.TheaterWhereInput
+}
+
+export type TheaterUpdateToOneWithWhereWithoutHallsInput = {
+  where?: Prisma.TheaterWhereInput
+  data: Prisma.XOR<Prisma.TheaterUpdateWithoutHallsInput, Prisma.TheaterUncheckedUpdateWithoutHallsInput>
+}
+
+export type TheaterUpdateWithoutHallsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TheaterUncheckedUpdateWithoutHallsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type TheaterCountOutputType
+ */
+
+export type TheaterCountOutputType = {
+  halls: number
+}
+
+export type TheaterCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  halls?: boolean | TheaterCountOutputTypeCountHallsArgs
+}
+
+/**
+ * TheaterCountOutputType without action
+ */
+export type TheaterCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TheaterCountOutputType
+   */
+  select?: Prisma.TheaterCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * TheaterCountOutputType without action
+ */
+export type TheaterCountOutputTypeCountHallsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HallWhereInput
+}
 
 
 export type TheaterSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -321,6 +424,8 @@ export type TheaterSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   address?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  halls?: boolean | Prisma.Theater$hallsArgs<ExtArgs>
+  _count?: boolean | Prisma.TheaterCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["theater"]>
 
 export type TheaterSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -348,10 +453,18 @@ export type TheaterSelectScalar = {
 }
 
 export type TheaterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "address" | "createdAt" | "updatedAt", ExtArgs["result"]["theater"]>
+export type TheaterInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  halls?: boolean | Prisma.Theater$hallsArgs<ExtArgs>
+  _count?: boolean | Prisma.TheaterCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type TheaterIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type TheaterIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $TheaterPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Theater"
-  objects: {}
+  objects: {
+    halls: Prisma.$HallPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
@@ -752,6 +865,7 @@ readonly fields: TheaterFieldRefs;
  */
 export interface Prisma__TheaterClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  halls<T extends Prisma.Theater$hallsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Theater$hallsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HallPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -803,6 +917,10 @@ export type TheaterFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   omit?: Prisma.TheaterOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TheaterInclude<ExtArgs> | null
+  /**
    * Filter, which Theater to fetch.
    */
   where: Prisma.TheaterWhereUniqueInput
@@ -821,6 +939,10 @@ export type TheaterFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.TheaterOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TheaterInclude<ExtArgs> | null
+  /**
    * Filter, which Theater to fetch.
    */
   where: Prisma.TheaterWhereUniqueInput
@@ -838,6 +960,10 @@ export type TheaterFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the Theater
    */
   omit?: Prisma.TheaterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TheaterInclude<ExtArgs> | null
   /**
    * Filter, which Theater to fetch.
    */
@@ -887,6 +1013,10 @@ export type TheaterFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.TheaterOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TheaterInclude<ExtArgs> | null
+  /**
    * Filter, which Theater to fetch.
    */
   where?: Prisma.TheaterWhereInput
@@ -934,6 +1064,10 @@ export type TheaterFindManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Theater
    */
   omit?: Prisma.TheaterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TheaterInclude<ExtArgs> | null
   /**
    * Filter, which Theaters to fetch.
    */
@@ -983,6 +1117,10 @@ export type TheaterCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    */
   omit?: Prisma.TheaterOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TheaterInclude<ExtArgs> | null
+  /**
    * The data needed to create a Theater.
    */
   data: Prisma.XOR<Prisma.TheaterCreateInput, Prisma.TheaterUncheckedCreateInput>
@@ -1030,6 +1168,10 @@ export type TheaterUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Theater
    */
   omit?: Prisma.TheaterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TheaterInclude<ExtArgs> | null
   /**
    * The data needed to update a Theater.
    */
@@ -1097,6 +1239,10 @@ export type TheaterUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    */
   omit?: Prisma.TheaterOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TheaterInclude<ExtArgs> | null
+  /**
    * The filter to search for the Theater to update in case it exists.
    */
   where: Prisma.TheaterWhereUniqueInput
@@ -1123,6 +1269,10 @@ export type TheaterDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    */
   omit?: Prisma.TheaterOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TheaterInclude<ExtArgs> | null
+  /**
    * Filter which Theater to delete.
    */
   where: Prisma.TheaterWhereUniqueInput
@@ -1143,6 +1293,30 @@ export type TheaterDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
+ * Theater.halls
+ */
+export type Theater$hallsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Hall
+   */
+  select?: Prisma.HallSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Hall
+   */
+  omit?: Prisma.HallOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HallInclude<ExtArgs> | null
+  where?: Prisma.HallWhereInput
+  orderBy?: Prisma.HallOrderByWithRelationInput | Prisma.HallOrderByWithRelationInput[]
+  cursor?: Prisma.HallWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HallScalarFieldEnum | Prisma.HallScalarFieldEnum[]
+}
+
+/**
  * Theater without action
  */
 export type TheaterDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1154,4 +1328,8 @@ export type TheaterDefaultArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the Theater
    */
   omit?: Prisma.TheaterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TheaterInclude<ExtArgs> | null
 }

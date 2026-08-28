@@ -1994,42 +1994,42 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stackcine/common@npm:^1.2.3":
-  version: 1.2.3
-  resolution: "@stackcine/common@npm:1.2.3"
+"@stackcine/common@npm:^1.2.8":
+  version: 1.2.8
+  resolution: "@stackcine/common@npm:1.2.8"
   dependencies:
-    "@stackcine/contracts": "npm:^1.5.1"
+    "@stackcine/contracts": "npm:^1.6.0"
   peerDependencies:
     "@nestjs/common": ^11.0.0
     "@nestjs/config": ^4.0.0
     "@nestjs/core": ^11.0.0
     "@nestjs/microservices": ^11.0.0
     rxjs: ^7.0.0
-  checksum: 10c0/dc582844b12fa45f4d8d73386afc8f38c462542c8d439d6add0ad17d0af16426bfddda242ec349d59ea59a482aa292905ad4f86e9602512c8f503f820e85559b
+  checksum: 10c0/46677c165356a602cb214920d274078172f3d23899e3e06ad90524db7bfb156aa80e568bae2712fc4cd1f23fdf2c9ae79475560ee6e86f3f54459512fb5587b7
   languageName: node
   linkType: hard
 
-"@stackcine/contracts@npm:^1.5.1":
-  version: 1.5.1
-  resolution: "@stackcine/contracts@npm:1.5.1"
+"@stackcine/contracts@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "@stackcine/contracts@npm:1.6.0"
   dependencies:
     "@nestjs/microservices": "npm:^11.1.13"
     "@stackcine/core": "npm:^1.0.7"
     rxjs: "npm:^7.8.2"
     ts-proto: "npm:^2.6.1"
-  checksum: 10c0/89d9ea1e2420bbf1b0c31e104e9d40f23fa10d29700b211293a862983b0e7c9db1ec79e5bdab5ff35dbbe7d96b9c64644c1283f65220f0c9eec54299196efb06
+  checksum: 10c0/bc3db5dfd072621d81acba93f954044aaf2a828845098ed7efad257202ceec65e38ace228c52a1af5fb5a9ef4fbbffcdb06cc75715f96850c9883a4b33b75c48
   languageName: node
   linkType: hard
 
-"@stackcine/contracts@npm:^1.5.3":
-  version: 1.5.3
-  resolution: "@stackcine/contracts@npm:1.5.3"
+"@stackcine/contracts@npm:^1.6.3":
+  version: 1.6.3
+  resolution: "@stackcine/contracts@npm:1.6.3"
   dependencies:
     "@nestjs/microservices": "npm:^11.1.13"
     "@stackcine/core": "npm:^1.0.7"
     rxjs: "npm:^7.8.2"
     ts-proto: "npm:^2.6.1"
-  checksum: 10c0/bb02f4e9d03a17c5a33f93020994cdc3032c0295fa731f2dff96ff17fefc1e0ac906a7a8ace887fc60cf4a248e6da9b48ecbfd68c84029d3befbc3d0286593ee
+  checksum: 10c0/0c15383f39732e2f1a8931546005921a6ee0e13b52b1557b6360aae1d707c2ba64e7d789cfc8ad2fa648d890ea3c27de6e712dc2268684b35bb062467c56229b
   languageName: node
   linkType: hard
 
@@ -7953,8 +7953,8 @@ __metadata:
     "@nestjs/testing": "npm:^11.0.1"
     "@prisma/adapter-pg": "npm:^7.9.1"
     "@prisma/client": "npm:^7.9.1"
-    "@stackcine/common": "npm:^1.2.3"
-    "@stackcine/contracts": "npm:^1.5.3"
+    "@stackcine/common": "npm:^1.2.8"
+    "@stackcine/contracts": "npm:^1.6.3"
     "@stackcine/core": "npm:^1.0.7"
     "@types/express": "npm:^5.0.0"
     "@types/jest": "npm:^30.0.0"

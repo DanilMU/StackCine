@@ -6,9 +6,7 @@ import {
 	HttpStatus,
 	Post,
 } from '@nestjs/common';
-import { Role } from '@stackcine/common';
 import { Theater } from '@stackcine/contracts/gen/ts/theater';
-import { Protected } from 'src/shared/decorators';
 
 import { CreateTheaterRequest } from './dto';
 import { TheaterClientGrpc } from './theater.grpc';
@@ -27,7 +25,7 @@ export class TheaterController {
 
 	// @Protected(Role.ADMIN)
 	@Post()
-	@HttpCode(HttpStatus.OK)
+	@HttpCode(HttpStatus.CREATED)
 	public async create(@Body() dto: CreateTheaterRequest) {
 		return await this.theater.call('createTheater', dto);
 	}

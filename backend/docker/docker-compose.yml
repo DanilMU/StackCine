@@ -73,7 +73,7 @@ services:
     container_name: redis-exporter
     image: oliver006/redis_exporter
     restart: always
-    command: --redis.addr=redis://:${RABBITMQ_DEFAULT_PASS}@redis:6379
+    command: --redis.addr=redis://:${REDIS_PASSWORD}@redis:6379
     ports:
       - "9121:9121"
     networks:

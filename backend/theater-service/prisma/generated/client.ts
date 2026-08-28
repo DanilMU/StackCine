@@ -44,3 +44,13 @@ export { Prisma }
  * 
  */
 export type Theater = Prisma.TheaterModel
+/**
+ * Model Hall
+ * 
+ */
+export type Hall = Prisma.HallModel
+/**
+ * Model Seat
+ * 
+ */
+export type Seat = Prisma.SeatModel

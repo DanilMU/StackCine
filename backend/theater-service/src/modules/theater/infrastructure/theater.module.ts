@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 
-import { CreateTheaterUseCase } from '../application/commands/create-theater.usecase';
+import { CreateTheaterUsecase } from '../application/commands/create-theater.usecase';
 import { GetTheaterUsecase } from '../application/queries/get-theater.usecase';
-import { ListTheaterUseCase } from '../application/queries/list-theaters.usecase';
+import { ListTheaterUsecase } from '../application/queries/list-theaters.usecase';
 import { TheaterRepositoryPort } from '../domain/ports/teather.repository.port';
 import { TheaterGrpcController } from '../interfaces/grpc/theater.grpc.controller';
 
@@ -15,9 +15,9 @@ import { TheaterPrismaRepository } from './prisma/theater.prisma.repository';
 			provide: TheaterRepositoryPort,
 			useClass: TheaterPrismaRepository,
 		},
-		ListTheaterUseCase,
+		ListTheaterUsecase,
 		GetTheaterUsecase,
-		CreateTheaterUseCase,
+		CreateTheaterUsecase,
 	],
 })
 export class TheaterModule {}
