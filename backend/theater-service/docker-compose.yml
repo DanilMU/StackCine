@@ -1,18 +1,20 @@
 version: '3.9'
 
 services:
-      theater-service:
-            container_name: theater-service
-            image: stackcine/theater-service:dev
-            build:
-                  context: .
-                  dockerfile: Dockerfile
-            restart: always
-            env_file:
-                  - .env.production.local
-            networks:
-                  - stackcine
+    theater-service:
+        container_name: theater-service
+        image: stackcine/theater-service:dev
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: always
+        ports:
+            - "50055:50055"
+        env_file:
+            - .env.production.local
+        networks:
+            - stackcine
 
 networks:
-      stackcine:
-            external: true
+    stackcine:
+        external: true

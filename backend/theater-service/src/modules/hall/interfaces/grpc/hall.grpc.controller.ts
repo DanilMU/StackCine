@@ -37,7 +37,7 @@ export class HallGrpcController {
 		return { hall };
 	}
 
-	@GrpcMethod('HallService', 'ListHalls')
+	@GrpcMethod('HallService', 'ListHallsByTheater')
 	public async getAll(data: ListHallsRequest): Promise<ListHallsResponse> {
 		const halls = await this.listUC.execute(data.theaterId);
 

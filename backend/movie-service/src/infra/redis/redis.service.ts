@@ -23,7 +23,6 @@ export class RedisService
 			db: Number(configService.getOrThrow<number>('REDIS_DB')),
 			maxRetriesPerRequest: 5,
 			enableOfflineQueue: true,
-			keepAlive: 30000,
 		});
 	}
 

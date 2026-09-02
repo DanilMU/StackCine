@@ -1,18 +1,20 @@
 version: '3.9'
 
 services:
-      movie-service:
-            container_name: movie-service
-            image: stackcine/movie-service:dev
-            build:
-                  context: .
-                  dockerfile: Dockerfile
-            restart: always
-            env_file:
-                  - .env.production.local
-            networks:
-                  - stackcine
+    movie-service:
+        container_name: movie-service
+        image: stackcine/movie-service:dev
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: always
+        ports:
+            - "50053:50053"
+        env_file:
+            - .env.production.local
+        networks:
+            - stackcine
 
 networks:
-      stackcine:
-            external: true
+    stackcine:
+        external: true
