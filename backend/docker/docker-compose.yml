@@ -1,220 +1,237 @@
 version: "3.9"
 
 services:
-  postgres:
-    container_name: postgres
-    image: postgres:17
-    restart: always
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    ports:
-      - "5433:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
-    networks:
-      - stackcine
+    postgres:
+        container_name: postgres
+        image: postgres:17
+        restart: always
+        environment:
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        ports:
+            - "5433:5432"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+            - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+        networks:
+            - stackcine
 
-  mongo:
-    container_name: mongo
-    image: mongo:6
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-    ports:
-      - "27018:27017"
-    volumes:
-      - mongo_data:/data/db
-    networks:
-      - stackcine
+    mongo:
+        container_name: mongo
+        image: mongo:6
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+            MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+        ports:
+            - "27018:27017"
+        volumes:
+            - mongo_data:/data/db
+        networks:
+            - stackcine
 
-  mongo-express:
-    container_name: mongo-express
-    image: mongo-express:latest
-    restart: always
-    ports:
-      - "8081:8081"
-    environment:
-      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/?authSource=admin
-      ME_CONFIG_BASICAUTH: "false"
-    networks:
-      - stackcine
-    depends_on:
-      - mongo
+    mongo-express:
+        container_name: mongo-express
+        image: mongo-express:latest
+        restart: always
+        ports:
+            - "8081:8081"
+        environment:
+            ME_CONFIG_MONGODB_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/?authSource=admin
+            ME_CONFIG_BASICAUTH: "false"
+        networks:
+            - stackcine
+        depends_on:
+            - mongo
 
-  redis:
-    container_name: redis
-    image: redis:8.4
-    restart: always
-    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}"]
-    ports:
-      - 6379:6379
-    volumes:
-      - redis_data:/data
-    networks:
-      - stackcine
+    redis:
+        container_name: redis
+        image: redis:8.4
+        restart: always
+        command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}"]
+        ports:
+            - 6379:6379
+        volumes:
+            - redis_data:/data
+        networks:
+            - stackcine
 
-  redisinsight:
-    container_name: redis_insight
-    image: redis/redisinsight:latest
-    restart: always
-    ports:
-      - "5540:5540"
-    volumes:
-      - redisinsight_data:/db
-    networks:
-      - stackcine
-    depends_on:
-      - redis
+    redisinsight:
+        container_name: redis_insight
+        image: redis/redisinsight:latest
+        restart: always
+        ports:
+            - "5540:5540"
+        volumes:
+            - redisinsight_data:/db
+        networks:
+            - stackcine
+        depends_on:
+            - redis
 
-  rabbitmq:
-    container_name: rabbitmq
-    image: rabbitmq:3-management
-    restart: always
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    environment:
-      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
-      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
-    volumes:
-      - rabbitmq_data:/var/lib/rabbitmq
-    networks:
-      - stackcine
+    rabbitmq:
+        container_name: rabbitmq
+        image: rabbitmq:3-management
+        restart: always
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+        environment:
+            RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+            RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+        volumes:
+            - rabbitmq_data:/var/lib/rabbitmq
+        networks:
+            - stackcine
 
-  postgres-exporter:
-    container_name: postgres-exporter
-    image: prometheuscommunity/postgres-exporter:latest
-    restart: always
-    environment:
-      DATA_SOURCE_NAME: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/postgres?sslmode=disable"
-    ports:
-      - "9187:9187"
-    networks:
-      - stackcine
-    depends_on:
-      - postgres
+    postgres-exporter:
+        container_name: postgres-exporter
+        image: prometheuscommunity/postgres-exporter:latest
+        restart: always
+        environment:
+            DATA_SOURCE_NAME: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/postgres?sslmode=disable"
+        ports:
+            - "9187:9187"
+        networks:
+            - stackcine
+        depends_on:
+            - postgres
 
-  redis-exporter:
-    container_name: redis-exporter
-    image: oliver006/redis_exporter
-    restart: always
-    command: --redis.addr=redis://:${REDIS_PASSWORD}@redis:6379
-    ports:
-      - "9121:9121"
-    networks:
-      - stackcine
-    depends_on:
-      - redis
+    redis-exporter:
+        container_name: redis-exporter
+        image: oliver006/redis_exporter
+        restart: always
+        command: --redis.addr=redis://:${REDIS_PASSWORD}@redis:6379
+        ports:
+            - "9121:9121"
+        networks:
+            - stackcine
+        depends_on:
+            - redis
 
-  rabbitmq-exporter:
-    container_name: rabbitmq-exporter
-    image: kbudde/rabbitmq-exporter
-    restart: always
-    environment:
-      RABBIT_URL: http://${RABBITMQ_DEFAULT_USER}:${RABBITMQ_DEFAULT_PASS}@rabbitmq:15672
-    ports:
-      - "9419:9419"
-    networks:
-      - stackcine
-    depends_on:
-      - rabbitmq
+    rabbitmq-exporter:
+        container_name: rabbitmq-exporter
+        image: kbudde/rabbitmq-exporter
+        restart: always
+        environment:
+            RABBIT_URL: http://${RABBITMQ_DEFAULT_USER}:${RABBITMQ_DEFAULT_PASS}@rabbitmq:15672
+        ports:
+            - "9419:9419"
+        networks:
+            - stackcine
+        depends_on:
+            - rabbitmq
 
-  node-exporter:
-    container_name: node-exporter
-    image: prom/node-exporter
-    restart: always
-    ports:
-      - "9100:9100"
-    networks:
-      - stackcine
+    node-exporter:
+        container_name: node-exporter
+        image: prom/node-exporter
+        restart: always
+        ports:
+            - "9100:9100"
+        networks:
+            - stackcine
 
-  prometheus:
-    container_name: prometheus
-    image: prom/prometheus:latest
-    restart: always
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
-    networks:
-      - stackcine
+    prometheus:
+        container_name: prometheus
+        image: prom/prometheus:latest
+        restart: always
+        volumes:
+            - ./prometheus.yml:/etc/prometheus/prometheus.yml
+        ports:
+            - "9090:9090"
+        networks:
+            - stackcine
 
-  jaeger:
-    container_name: jaeger
-    image: jaegertracing/all-in-one:1.47
-    restart: unless-stopped
-    ports:
-      - "16686:16686"
-      - "4317:4317"
-      - "4318:4318"
-    networks:
-      - stackcine
+    jaeger:
+        container_name: jaeger
+        image: jaegertracing/all-in-one:1.47
+        restart: unless-stopped
+        ports:
+            - "16686:16686"
+            - "4317:4317"
+            - "4318:4318"
+        networks:
+            - stackcine
 
-  loki:
-    image: grafana/loki:2.9.1
-    container_name: loki
-    restart: unless-stopped
-    volumes:
-      - ./loki-config.yml:/etc/loki/config.yaml
-      - ./loki-data:/loki
-      - ./loki-wal:/wal
-    command: -config.file=/etc/loki/config.yaml
-    ports:
-      - "3100:3100"
-    networks:
-      - stackcine
+    loki:
+        image: grafana/loki:2.9.1
+        container_name: loki
+        restart: unless-stopped
+        volumes:
+            - ./loki-config.yml:/etc/loki/config.yaml
+            - ./loki-data:/loki
+            - ./loki-wal:/wal
+        command: -config.file=/etc/loki/config.yaml
+        ports:
+            - "3100:3100"
+        networks:
+            - stackcine
 
-  promtail:
-    image: grafana/promtail:2.9.1
-    container_name: promtail
-    volumes:
-      - ./promtail-config.yml:/etc/promtail/config.yaml
-      - ../logs:/var/log/services
-    command: -config.file=/etc/promtail/config.yaml
-    networks:
-      - stackcine
+    promtail:
+        image: grafana/promtail:2.9.1
+        container_name: promtail
+        volumes:
+            - ./promtail-config.yml:/etc/promtail/config.yaml
+            - ../logs:/var/log/services
+        command: -config.file=/etc/promtail/config.yaml
+        networks:
+            - stackcine
 
-  grafana:
-    container_name: grafana
-    image: grafana/grafana:10.2.3
-    restart: unless-stopped
-    ports:
-      - "3002:3000"
-    volumes:
-      - grafana-storage:/var/lib/grafana
-    depends_on:
-      - prometheus
-    networks:
-      - stackcine
+    grafana:
+        container_name: grafana
+        image: grafana/grafana:10.2.3
+        restart: unless-stopped
+        ports:
+            - "3002:3000"
+        volumes:
+            - grafana-storage:/var/lib/grafana
+        depends_on:
+            - prometheus
+        networks:
+            - stackcine
 
-  minio:
-    image: minio/minio:latest
-    container_name: minio
-    restart: unless-stopped
-    ports:
-      - "9000:9000"
-      - "9001:9001"
-    environment:
-      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin123}
-    volumes:
-      - minio_data:/data
-    command: server /data --console-address ":9001"
-    networks:
-      - stackcine
+    minio:
+        image: minio/minio:latest
+        container_name: minio
+        restart: unless-stopped
+        ports:
+            - "9000:9000"
+            - "9001:9001"
+        environment:
+            MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+            MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin123}
+        volumes:
+            - minio_data:/data
+        command: server /data --console-address ":9001"
+        networks:
+            - stackcine
+
+    ngrok:
+        container_name: ngrok
+        image: ngrok/ngrok:latest
+        restart: unless-stopped
+        command:
+            - "http"
+            - "host.docker.internal:4000"
+            - "--url=${NGROK_URL}"
+        environment:
+            NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
+        ports:
+            - "4040:4040"
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        networks:
+            - stackcine
 
 volumes:
-  postgres_data:
-  mongo_data:
-  redis_data:
-  redisinsight_data:
-  rabbitmq_data:
-  grafana-storage:
-  minio_data:
+    postgres_data:
+    mongo_data:
+    redis_data:
+    redisinsight_data:
+    rabbitmq_data:
+    grafana-storage:
+    minio_data:
 
 networks:
-  stackcine:
-    external: true
+    stackcine:
+        external: true
