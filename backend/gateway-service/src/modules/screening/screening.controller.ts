@@ -8,10 +8,12 @@ import {
 	Post,
 	Query,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
 import { CreateScreeningRequest, GetScreeningsRequest } from './dto';
 import { ScreeningClientGrpc } from './screening.grpc';
 
+@ApiTags('Screening')
 @Controller('screenings')
 export class ScreeningController {
 	public constructor(private readonly screening: ScreeningClientGrpc) {}

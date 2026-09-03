@@ -11,6 +11,7 @@ import { ScreeningModule } from 'src/modules/screening/screening.module';
 import { SeatModule } from 'src/modules/seat/seat.module';
 import { TheaterModule } from 'src/modules/theater/theater.module';
 import { UsersModule } from 'src/modules/users/users.module';
+import { WebhookModule } from 'src/modules/webhook/webhook.module';
 import { ObservabilityModule } from 'src/observability/observability.module';
 
 import { AppController } from './app.controller';
@@ -42,6 +43,7 @@ import { getPassportConfig } from './config';
 		SeatModule,
 		ScreeningModule,
 		PaymentModule,
+		WebhookModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
