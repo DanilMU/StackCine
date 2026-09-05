@@ -10,4 +10,5 @@
  */
 export type * from './models/Payment.js'
 export type * from './models/PaymentMethod.js'
+export type * from './models/Refund.js'
 export type * from './commonInputTypes.js'

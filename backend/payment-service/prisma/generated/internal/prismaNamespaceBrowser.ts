@@ -52,7 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Payment: 'Payment',
-  PaymentMethod: 'PaymentMethod'
+  PaymentMethod: 'PaymentMethod',
+  Refund: 'Refund'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -78,6 +79,7 @@ export const PaymentScalarFieldEnum = {
   providerId: 'providerId',
   metadata: 'metadata',
   userId: 'userId',
+  bookingId: 'bookingId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -100,6 +102,19 @@ export const PaymentMethodScalarFieldEnum = {
 } as const
 
 export type PaymentMethodScalarFieldEnum = (typeof PaymentMethodScalarFieldEnum)[keyof typeof PaymentMethodScalarFieldEnum]
+
+
+export const RefundScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  status: 'status',
+  providerId: 'providerId',
+  paymentId: 'paymentId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RefundScalarFieldEnum = (typeof RefundScalarFieldEnum)[keyof typeof RefundScalarFieldEnum]
 
 
 export const SortOrder = {

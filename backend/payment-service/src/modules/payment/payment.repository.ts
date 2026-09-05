@@ -55,7 +55,7 @@ export class PaymentRepository {
 		});
 	}
 
-	public findUserPaymentMethod(userId: string) {
+	public findUserPaymentMethods(userId: string) {
 		return this.prismaService.paymentMethod.findMany({
 			where: {
 				userId,

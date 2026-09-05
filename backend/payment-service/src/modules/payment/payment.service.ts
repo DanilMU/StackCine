@@ -4,8 +4,12 @@ import { RpcException } from '@nestjs/microservices';
 import { PaymentMethod, PaymentMethodStatus } from '@prisma/generated/client';
 import { RpcStatus } from '@stackcine/common';
 import type {
+	CreatePaymentMethodRequest,
 	CreatePaymentRequest,
+	DeletePaymentMethodRequest,
+	GetUserPaymentMethodsRequest,
 	ProcessPaymentEventRequest,
+	VerifyPaymentMethodRequest,
 } from '@stackcine/contracts/gen/ts/payment';
 import {
 	ConfirmationEnum,
@@ -41,9 +45,12 @@ export class PaymentService {
 			? seats.reduce((acc, s) => acc + s.price, 0)
 			: 1000;
 
+		const bookingId = (data as any).bookingId ?? '123456';
+
 		const transaction = await this.repository.createPayment({
 			amount: totalAmount,
 			userId,
+			bookingId,
 		});
 
 		let paymentMethod: PaymentMethod | null = null;
@@ -81,7 +88,7 @@ export class PaymentService {
 			},
 			metadata: {
 				payment_id: transaction.id,
-				booking_id: '123456',
+				booking_id: bookingId,
 				user_id: userId,
 			},
 		});
@@ -119,8 +126,6 @@ export class PaymentService {
 				code: RpcStatus.NOT_FOUND,
 				details: 'Payment not found',
 			});
-
-		console.log('PAYMENT: ', payment);
 
 		if (event === 'payment.waiting_for_capture') {
 			try {
@@ -168,6 +173,91 @@ export class PaymentService {
 		if (event === 'payment.canceled') {
 			await this.repository.markPaymentFailed(payment.id);
 		}
+
+		return { ok: true };
+	}
+
+	public async getUserPaymentMethods(data: GetUserPaymentMethodsRequest) {
+		const { userId } = data;
+
+		const methods =
+			await this.repository.findUserPaymentMethods(userId);
+
+		return { methods };
+	}
+
+	public async createPaymentMethod(data: CreatePaymentMethodRequest) {
+		const { userId } = data;
+
+		const method = await this.repository.createPaymentMethod({
+			type: 'BANK_CARD',
+			userId,
+		});
+
+		const yookassa = await this.yookassaService.paymentMethods.create({
+			confirmation: {
+				type: ConfirmationEnum.REDIRECT,
+				return_url: `${this.HOSTS_APP}/account/payment-methods/callback?payment_method_id=${method.id}`,
+			},
+			type: PaymentMethodsEnum.BANK_CARD,
+		});
+
+		await this.repository.updatePaymentMethod(method.id, {
+			providerId: yookassa.id,
+		});
+
+		return {
+			userId,
+			url: yookassa.confirmation?.confirmation_url,
+		};
+	}
+
+	public async verifyPaymentMethod(data: VerifyPaymentMethodRequest) {
+		const { methodId, userId } = data;
+
+		const method =
+			await this.repository.findPaymentsMethodById(methodId);
+
+		if (!method || method.userId !== userId)
+			throw new RpcException({
+				code: RpcStatus.NOT_FOUND,
+				details: 'Payment method not found',
+			});
+
+		const yookassa = await this.yookassaService.paymentMethods.getById(
+			method.providerId!,
+		);
+
+		if (!yookassa || yookassa.status !== 'active')
+			throw new RpcException({
+				code: RpcStatus.FAILED_PRECONDITION,
+				details: 'Payment method is not active or was not saved',
+			});
+
+		await this.repository.updatePaymentMethod(method.id, {
+			status: PaymentMethodStatus.ACTIVE,
+			first6: yookassa.card?.first6,
+			last4: yookassa.card?.last4,
+			bank: yookassa.card?.card_product?.name ?? 'Unknown',
+			brand: yookassa.card?.card_type,
+		});
+
+		return { ok: true };
+	}
+
+	public async deletePaymentMethod(data: DeletePaymentMethodRequest) {
+		const { methodId, userId } = data;
+
+		const method =
+			await this.repository.findPaymentsMethodById(methodId);
+
+		if (!method || method.userId !== userId)
+			throw new RpcException({
+				code: RpcStatus.NOT_FOUND,
+				details: 'Payment method not found',
+			});
+
+		await this.repository.deletePaymentMethod(method.id);
 
 		return { ok: true };
 	}

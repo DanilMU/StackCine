@@ -1,10 +1,14 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 
 import { PaymentClientGrpc } from '../payment/payment.grpc';
+import { RefundClientGrpc } from '../refund/refund.grpc';
 
 @Controller('webhook')
 export class WebhookController {
-	public constructor(private readonly paymentClient: PaymentClientGrpc) {}
+	public constructor(
+		private readonly paymentClient: PaymentClientGrpc,
+		private readonly refundClient: RefundClientGrpc,
+	) {}
 
 	@Post('yookassa')
 	@HttpCode(HttpStatus.OK)
@@ -24,6 +28,16 @@ export class WebhookController {
 				providerMethodId: data.payment_method?.id,
 				cardFirst6: card?.first6,
 				cardLast4: card?.last4,
+				bank: card?.card_product?.name ?? 'Unknown',
+				brand: card?.card_type,
+			});
+		}
+
+		if (event.startsWith('refund.')) {
+			await this.refundClient.call('processRefundEvent', {
+				event,
+				providerRefundId: data.id,
+				status: data.status,
 			});
 		}
 	}

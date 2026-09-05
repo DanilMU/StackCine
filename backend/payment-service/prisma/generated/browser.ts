@@ -27,3 +27,8 @@ export type Payment = Prisma.PaymentModel
  * 
  */
 export type PaymentMethod = Prisma.PaymentMethodModel
+/**
+ * Model Refund
+ * 
+ */
+export type Refund = Prisma.RefundModel

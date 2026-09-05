@@ -7,6 +7,7 @@ import { CategoryModule } from 'src/modules/category/category.module';
 import { HallModule } from 'src/modules/hall/hall.module';
 import { MovieModule } from 'src/modules/movie/movie.module';
 import { PaymentModule } from 'src/modules/payment/payment.module';
+import { RefundModule } from 'src/modules/refund/refund.module';
 import { ScreeningModule } from 'src/modules/screening/screening.module';
 import { SeatModule } from 'src/modules/seat/seat.module';
 import { TheaterModule } from 'src/modules/theater/theater.module';
@@ -43,6 +44,7 @@ import { getPassportConfig } from './config';
 		SeatModule,
 		ScreeningModule,
 		PaymentModule,
+		RefundModule,
 		WebhookModule,
 	],
 	controllers: [AppController],
