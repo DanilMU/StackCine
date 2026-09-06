@@ -21,7 +21,17 @@ export class SeatGrpcController {
 	public async getById(data: GetSeatRequest): Promise<GetSeatResponse> {
 		const seat = await this.getUC.execute(data.id);
 
-		return { seat };
+		return {
+			seat: {
+				id: seat.id,
+				row: seat.row,
+				number: seat.number,
+				price: seat.price,
+				type: seat.type,
+				hallId: seat.hallId,
+				status: 'available',
+			},
+		};
 	}
 
 	@GrpcMethod('SeatService', 'ListSeatsByHall')
