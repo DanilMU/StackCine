@@ -2997,30 +2997,42 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stackcine/common@npm:^1.3.1":
-  version: 1.3.1
-  resolution: "@stackcine/common@npm:1.3.1"
+"@stackcine/common@npm:^1.3.2":
+  version: 1.3.2
+  resolution: "@stackcine/common@npm:1.3.2"
   dependencies:
-    "@stackcine/contracts": "npm:^1.9.0"
+    "@stackcine/contracts": "npm:^1.10.0"
   peerDependencies:
     "@nestjs/common": ^11.0.0
     "@nestjs/config": ^4.0.0
     "@nestjs/core": ^11.0.0
     "@nestjs/microservices": ^11.0.0
     rxjs: ^7.0.0
-  checksum: 10c0/c19cf503bbda6fcae562506f2a0f5b586187484a6ea2bd5533fb1fc2834b5ca59de42bfd70166757181f5754ba94333f567e601bd4a31b474d29d484f0cdb69f
+  checksum: 10c0/3c45b5d00b311c5f83dcdd949d8d66fb06f47f21ccb9760e41cb8b57a433f4ccc7ba6b565eb0a3a3d6e718c3e5a4a5329a4f6cd482deac028d0ad77527b92069
   languageName: node
   linkType: hard
 
-"@stackcine/contracts@npm:^1.9.0":
-  version: 1.9.0
-  resolution: "@stackcine/contracts@npm:1.9.0"
+"@stackcine/contracts@npm:^1.10.0":
+  version: 1.10.0
+  resolution: "@stackcine/contracts@npm:1.10.0"
   dependencies:
     "@nestjs/microservices": "npm:^11.1.13"
     "@stackcine/core": "npm:^1.0.7"
     rxjs: "npm:^7.8.2"
     ts-proto: "npm:^2.6.1"
-  checksum: 10c0/dbefecf12c43b81dd020b6276dae3249a542bd365b79d33b5a25c391f6df7c6b6dae1f688d2d20e98c13ad156f9f078daebc250ee46496604a9f8cad64cca079
+  checksum: 10c0/194122f75b635a4d988dbc0c852d30ab55a51ca2a5f155b8541f829a5ea77625480965c640eed111e2df78eef652b5d91626fc73e8a24295d362e6121521b288
+  languageName: node
+  linkType: hard
+
+"@stackcine/contracts@npm:^1.10.1":
+  version: 1.10.1
+  resolution: "@stackcine/contracts@npm:1.10.1"
+  dependencies:
+    "@nestjs/microservices": "npm:^11.1.13"
+    "@stackcine/core": "npm:^1.0.7"
+    rxjs: "npm:^7.8.2"
+    ts-proto: "npm:^2.6.1"
+  checksum: 10c0/853c55b01e18fc3f730ed2d990cb64aaf76269ddcb87c12223b47bbcca7df656e9675cdb1a920cb44f763c055879bcde26055171ffc97723d8b4036f314f1aa2
   languageName: node
   linkType: hard
 
@@ -6196,8 +6208,8 @@ __metadata:
     "@opentelemetry/resources": "npm:^2.10.0"
     "@opentelemetry/sdk-node": "npm:^0.221.0"
     "@opentelemetry/semantic-conventions": "npm:^1.43.0"
-    "@stackcine/common": "npm:^1.3.1"
-    "@stackcine/contracts": "npm:^1.9.0"
+    "@stackcine/common": "npm:^1.3.2"
+    "@stackcine/contracts": "npm:^1.10.1"
     "@stackcine/core": "npm:^1.0.7"
     "@stackcine/passport": "npm:^1.0.0"
     "@swc/cli": "npm:^0.6.0"
