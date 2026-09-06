@@ -6,6 +6,9 @@ import {
 	ProcessRefundEventRequest,
 } from '@stackcine/contracts/gen/ts/refund';
 import { YookassaService } from 'nestjs-yookassa';
+import { lastValueFrom } from 'rxjs';
+
+import { BookingClientGrpc } from '@/clients/booking.client';
 
 import { RefundRepository } from './refund.repository';
 
@@ -14,6 +17,7 @@ export class RefundService {
 	public constructor(
 		private readonly repository: RefundRepository,
 		private readonly yookassaService: YookassaService,
+		private readonly bookingClient: BookingClientGrpc,
 	) {}
 
 	public async createRefund(data: CreateRefundRequest) {
@@ -81,6 +85,13 @@ export class RefundService {
 				await this.repository.markRefundSuccess(refund.id);
 				await this.repository.markPaymentRefunded(
 					refund.paymentId,
+				);
+
+				await lastValueFrom(
+					this.bookingClient.cancelBooking({
+						bookingId: refund.payment.bookingId,
+						userId: refund.payment.userId,
+					}),
 				);
 
 				return { ok: true };

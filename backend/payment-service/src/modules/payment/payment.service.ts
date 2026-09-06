@@ -17,6 +17,9 @@ import {
 	PaymentMethodsEnum,
 	YookassaService,
 } from 'nestjs-yookassa';
+import { lastValueFrom } from 'rxjs';
+
+import { BookingClientGrpc } from '@/clients/booking.client';
 
 import { PaymentRepository } from './payment.repository';
 
@@ -28,6 +31,7 @@ export class PaymentService {
 		private readonly repository: PaymentRepository,
 		private readonly configService: ConfigService,
 		private readonly yookassaService: YookassaService,
+		private readonly bookingClient: BookingClientGrpc,
 	) {
 		this.HOSTS_APP = this.configService.getOrThrow<string>('HOSTS_APP');
 	}
@@ -41,16 +45,18 @@ export class PaymentService {
 			savePaymentMethod,
 		} = data;
 
-		const totalAmount = seats?.length
-			? seats.reduce((acc, s) => acc + s.price, 0)
-			: 1000;
-
-		const bookingId = (data as any).bookingId ?? '123456';
+		const reservation = await lastValueFrom(
+			this.bookingClient.createReservation({
+				userId,
+				screeningId,
+				seats,
+			}),
+		);
 
 		const transaction = await this.repository.createPayment({
-			amount: totalAmount,
+			amount: reservation.amount,
 			userId,
-			bookingId,
+			bookingId: reservation.orderId,
 		});
 
 		let paymentMethod: PaymentMethod | null = null;
@@ -88,7 +94,7 @@ export class PaymentService {
 			},
 			metadata: {
 				payment_id: transaction.id,
-				booking_id: bookingId,
+				booking_id: reservation.orderId,
 				user_id: userId,
 			},
 		});
@@ -167,6 +173,22 @@ export class PaymentService {
 						);
 					}
 				}
+			}
+
+			try {
+				await lastValueFrom(
+					this.bookingClient.confirmBooking({
+						bookingId,
+						userId,
+					}),
+				);
+			} catch (error) {
+				console.error(
+					'Failed to call booking.confirmBooking: ',
+					error,
+				);
+
+				throw error;
 			}
 		}
 
