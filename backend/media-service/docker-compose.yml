@@ -9,7 +9,7 @@ services:
     env_file:
       - .env
     ports:
-      - '8084:8084'
+      - '4200:4200'
       - '50054:50054'
     networks:
       - stackcine

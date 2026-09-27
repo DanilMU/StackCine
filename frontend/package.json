@@ -1,0 +1,48 @@
+{
+	"name": "frontend",
+	"version": "0.1.0",
+	"private": true,
+	"packageManager": "yarn@4.15.0",
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"api:gen": "orval --config orval.config.ts",
+		"format": "prettier --write ."
+	},
+	"dependencies": {
+		"@hookform/resolvers": "^5.0.1",
+		"@tanstack/react-form": "^1.25.0",
+		"@tanstack/react-query": "^5.79.0",
+		"axios": "^1.9.0",
+		"class-variance-authority": "^0.7.1",
+		"date-fns": "^4.1.0",
+		"embla-carousel-react": "^8.6.0",
+		"framer-motion": "^12.23.12",
+		"js-cookie": "^3.0.5",
+		"lucide-react": "^0.511.0",
+		"next": "15.3.2",
+		"qrcode": "^1.5.4",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"react-hook-form": "^7.56.4",
+		"react-icons": "^5.5.0",
+		"react-zoom-pan-pinch": "^3.7.0",
+		"tailwind-merge": "^3.3.0",
+		"zod": "^4.1.13"
+	},
+	"devDependencies": {
+		"@tailwindcss/postcss": "^4",
+		"@trivago/prettier-plugin-sort-imports": "^6.0.0",
+		"@types/js-cookie": "^3.0.6",
+		"@types/node": "^20",
+		"@types/qrcode": "^1.5.5",
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"orval": "7.4.1",
+		"prettier": "^3.6.2",
+		"prettier-plugin-tailwindcss": "^0.7.1",
+		"tailwindcss": "^4",
+		"typescript": "^5"
+	}
+}

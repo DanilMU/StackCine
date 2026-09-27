@@ -11,7 +11,7 @@ export class CreateTheaterRequest {
 	public name!: string;
 
 	@ApiProperty({
-		example: 'ул. Ленина, дю 25',
+		example: 'г. Заречный, ул. Ленина, д. 25',
 		description: 'Адрес кинотеатра',
 	})
 	@IsString()

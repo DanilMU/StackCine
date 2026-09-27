@@ -9,6 +9,6 @@ export class AppService {
 	}
 
 	public health(): HealthResponse {
-		return new HealthResponse('OK', new Date().toISOString());
+		return new HealthResponse('ok', new Date().toISOString());
 	}
 }
